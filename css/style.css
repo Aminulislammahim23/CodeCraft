@@ -1,0 +1,84 @@
+body{
+    background-color: rgb(151, 151, 247);
+}
+
+header{
+    background-color: #2973e2;
+}
+
+.topSelection{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+}
+
+.logo img {
+    width: 40px;
+    margin-right: 10px;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    gap: 15px;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.signup-btn {
+    background-color: #58a6ff;
+    padding: 6px 12px;
+    border-radius: 4px;
+    color: #fff;
+}
+
+.hero {
+    background: #fefefe;
+    text-align: center;
+    padding: 60px 20px;
+}
+
+.hero h2 {
+    font-size: 2.5rem;
+}
+
+.cta-btn {
+    background-color: #1f6feb;
+    color: white;
+    padding: 12px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 1rem;
+    margin-top: 20px;
+    display: inline-block;
+}
+
+.languages {
+    padding: 40px;
+    background-color: #ffffff;
+}
+
+.lang-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+}
+
+.features {
+    padding: 40px;
+    background: #f9f9f9;
+}
+
+footer {
+    background-color: #0d1117;
+    color: white;
+    text-align: center;
+    padding: 15px 0;
+}
