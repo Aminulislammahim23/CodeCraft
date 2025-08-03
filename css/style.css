@@ -2,6 +2,23 @@ body{
     background-color: rgb(151, 151, 247);
 }
 
+div.static{
+    position: static;
+    border: 3px solid #73AD21;
+
+}
+
+div.relative{
+    position:relative;
+    left: 30px;
+    border: 5px solid green;
+}
+
+p.color{
+    background-color: red;
+    color: black;
+}
+
 header{
     background-color: #2973e2;
 }
