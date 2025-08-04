@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Quiz Result</title>
+  <link rel="stylesheet" href="../css/quizs.css">
+</head>
+<body class="bg">
+  <div class="header">
+    <h1>Quiz Results</h1>
+  </div>
+
+  <div class="result-box">
+    <h2 id="resultText"></h2>
+    <p id="scoreSummary"></p>
+    <button class="btn" onclick="retakeQuiz()">Retake Quiz</button>
+  </div>
+
+  <script>
+    const score = parseInt(sessionStorage.getItem("quizScore"));
+    const total = parseInt(sessionStorage.getItem("quizTotal"));
+
+    const resultText = document.getElementById("resultText");
+    const scoreSummary = document.getElementById("scoreSummary");
+
+    if (score >= total * 0.6) {
+      resultText.innerText = "You Passed!";
+    } else {
+      resultText.innerText = "You Failed. Try Again!";
+    }
+
+    scoreSummary.innerText = `You scored ${score} out of ${total}`;
+
+    function retakeQuiz() {
+      window.location.href = "../pages/quiz.html";
+    }
+  </script>
+</body>
+</html>

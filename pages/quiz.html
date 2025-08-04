@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>HTML Quiz</title>
+  <link rel="stylesheet" href="../css/quizs.css"
+</head>
+<body class="bg">
+  <div class="header">
+    <h1>Quiz: HTML Basics</h1>
+  </div>
+
+  <div class="quiz-container">
+    <form id="quizForm">
+      <div class="quiz-question">
+        <h3>1. What does HTML stand for?</h3>
+        <div class="quiz-options">
+          <label><input type="radio" name="q1" value="a"> Hyperlinks and Text Markup Language</label>
+          <label><input type="radio" name="q1" value="b"> Home Tool Markup Language</label>
+          <label><input type="radio" name="q1" value="c"> Hyper Text Markup Language</label>
+          <label><input type="radio" name="q1" value="d"> HighText Machine Language</label>
+        </div>
+      </div>
+
+      <div class="quiz-question">
+        <h3>2. Which tag is used to insert a line break?</h3>
+        <div class="quiz-options">
+          <label><input type="radio" name="q2" value="a"> &lt;br&gt;</label>
+          <label><input type="radio" name="q2" value="b"> &lt;break&gt;</label>
+          <label><input type="radio" name="q2" value="c"> &lt;lb&gt;</label>
+          <label><input type="radio" name="q2" value="d"> &lt;line&gt;</label>
+        </div>
+      </div>
+
+
+      <button type="button" class="btn" onclick="gradeQuiz()">Submit Quiz</button>
+    </form>
+  </div>
+
+  <script src="../js/quiz.js"></script>
+</body>
+</html>
