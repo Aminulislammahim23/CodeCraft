@@ -11,23 +11,23 @@
         <h2>Sign Up</h2>
         <form>
             <div class="input-group">
-                <input type="text" required>
+                <input type="text" id="name" required>
                 <label>Name</label>
             </div>
             <div class="input-group">
-                <input type="email" required>
+                <input type="email" id="email" required>
                 <label>Email</label>
             </div>
             <div class="input-group">
-                <input type="password" required>
+                <input type="password" id="password" required>
                 <label>Password</label>
             </div>
             <div class="input-group">
-                <input type="password" required>
+                <input type="password" id="confirmPassword" required>
                 <label>Confirm Password</label>
             </div>
             <div class="input-group">
-                <input type="date" required>
+                <input type="date" id="dob" required>
                 <label>Date of Birth</label>
             </div>
             <button type="submit" class="signup-btn">Sign Up</button>
@@ -36,5 +36,111 @@
             </div>
         </form>
     </div>
+    <script>
+        function validateForm() {
+            // Validate Name
+            var nameInput = document.getElementById('name');
+            var name = nameInput.value.trim();
+            if (name === "") {
+                alert("Name cannot be empty");
+                return false;
+            }
+           
+            var words = name.split(" ");
+            var count = 0;
+            for (var i = 0; i < words.length; i++) {
+                if (words[i] !== "") {
+                    count++;
+                }
+            }
+            if (count < 2) {
+                alert("Name must contain at least two words");
+                return false;
+            }
+            const first = name.charAt(0);
+            const isLetter = (first >= 'a' && first <= 'z') || (first >= 'A' && first <= 'Z');
+            if (!isLetter) {
+                alert("Name must start with a letter.");
+                return false;
+            }
+            const allowedChars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ .-';
+            for (const char of name) {
+                if (!allowedChars.includes(char)) {
+                    alert("Only letters, dot (.), dash (-), and space are allowed in name.");
+                    return false;
+                }
+            }
+ 
+            var emailInput = document.getElementById('email');
+            var email = emailInput.value.trim();
+            if (email === "") {
+                alert("Email cannot be empty");
+                return false;
+            }
+            if (!email.includes("@")) {
+                alert("Email must contain @");
+                return false;
+            }
+ 
+           
+            var passwordInput = document.getElementById('password');
+            var password = passwordInput.value;
+            if (password === "") {
+                alert("Password cannot be empty");
+                return false;
+            }
+            if (password.length < 8) {
+                alert("Password must be at least 8 characters long");
+                return false;
+            }
+ 
+         
+            var confirmPasswordInput = document.getElementById('confirmPassword');
+            var confirmPassword = confirmPasswordInput.value;
+            if (confirmPassword === "") {
+                alert("Confirm Password cannot be empty");
+                return false;
+            }
+            if (confirmPassword !== password) {
+                alert("Passwords do not match");
+                return false;
+            }
+ 
+           
+            var dobInput = document.getElementById('dob');
+            var dob = dobInput.value;
+            if (dob === "") {
+                alert("Date of Birth cannot be empty");
+                return false;
+            }
+            var dobDate = new Date(dob);
+            var today = new Date();
+            var minDate = new Date("1900-01-01");
+            if (isNaN(dobDate.getTime())) {
+                alert("Please enter a valid date");
+                return false;
+            }
+            if (dobDate < minDate || dobDate > today) {
+                alert("Date of Birth must be between 1900 and today");
+                return false;
+            }
+            var ageDiff = today.getFullYear() - dobDate.getFullYear();
+            var monthDiff = today.getMonth() - dobDate.getMonth();
+            if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < dobDate.getDate())) {
+                ageDiff--;
+            }
+           
+ 
+            alert("Form submitted successfully!");
+            return true;
+        }
+ 
+        document.querySelector('form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            if (validateForm()) {
+                window.location.href = "login.html";
+            }
+        });
+    </script>
 </body>
 </html>
