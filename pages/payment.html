@@ -1,0 +1,64 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Payment Integration</title>
+  <link rel="stylesheet" href="../css/payment.css">
+</head>
+<body>
+  
+    <header>
+        <div class="logo">CodeCraft</div>
+        <nav>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="../pages/CourseManagement.html">Courses</a></li>
+                <li><a href="../pages/forum.html" class="active">Forum</a></li>
+                <li><a href="#">Progress</a></li>
+                <li><a href="../pages/login.html">Account</a></li>
+            </ul>
+        </nav>
+    
+    </header>
+
+<main>
+    <section class="payment-section">
+      <h2>Payment Details</h2>
+      <label for="courseName">Course Name:</label>
+      <input type="text" id="courseName" placeholder="Selected Course" disabled>
+
+      <label for="coupon">Coupon Code:</label>
+      <input type="text" id="coupon" placeholder="Enter coupon code">
+      <button onclick="applyCoupon()">Apply Coupon</button>
+
+      <h3>Payment Method</h3>
+      <label><input type="radio" name="paymentMethod" value="card" checked> Credit/Debit Card</label>
+      <label><input type="radio" name="paymentMethod" value="paypal"> PayPal</label>
+
+      <div id="cardDetails">
+        <label for="cardNumber">Card Number:</label>
+        <input type="text" id="cardNumber" placeholder="1234 5678 9012 3456">
+
+        <label for="expiry">Expiry Date:</label>
+        <input type="month" id="expiry">
+
+        <label for="cvv">CVV:</label>
+        <input type="text" id="cvv" placeholder="123">
+      </div>
+
+      <div id="paypalDetails" style="display:none;">
+        <p>You'll be redirected to PayPal for secure payment.</p>
+      </div>
+
+      <button onclick="processPayment()">Pay Now</button>
+    </section>
+  </main>
+
+ <footer>
+    <p>&copy; 2025 Online Learning Platform</p>
+  </footer>
+
+  <script src="../js/payment.js"></script>
+
+</body>
+</html>
