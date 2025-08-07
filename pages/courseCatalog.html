@@ -2,8 +2,93 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Course Catalog</title>
-  <link rel="stylesheet" href="style.css">
-  
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Course Catalog Dashboard</title>
+  <link rel="stylesheet" href="../css/courseCatalog.css">
 </head>
 <body>
+   <header>
+        <div class="logo">CodeCraft</div>
+        <nav>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="../pages/CourseManagement.html">Courses</a></li>
+                <li><a href="../pages/forum.html" class="active">Forum</a></li>
+                <li><a href="#">Progress</a></li>
+                <li><a href="../pages/login.html">Account</a></li>
+            </ul>
+        </nav>
+    
+    </header>
+
+  <h1>Certification Course Catalog</h1>
+
+  <div class="search-container">
+    <input type="text" id="searchInput" placeholder="Search by course name...">
+    <button onclick="searchCertificate()">Search</button>
+  </div>
+
+  <div class="certificate-card" id="certificateDisplay" style="display:none;">
+    <div class="certificate-row"><strong>Course ID:</strong> <span id="courseId">---</span></div>
+  </div>
+
+  <div class="container">
+    <div class="filter">
+      <select>
+        <option value="all">All Categories</option>
+        <option value="html">HTML</option>
+        <option value="css">CSS</option>
+        <option value="js">JS</option>
+      </select>
+    </div>
+
+    <div class="course-grid">
+      <div class="course-card">
+        <img src="..//image/html.png" alt="HTML Course">
+        <h3><a href="../course-details.html">HTML for Beginners</a></h3>
+        <p>Category: Programming</p>
+        <div class="rating">⭐⭐⭐⭐☆</div>
+      </div>
+
+      <div class="course-card">
+        <img src="..//image/css.png" alt="CSS">
+        <h3><a href="course-details.html">CSS for Beginners</a></h3>
+        <p>Category: Programming</p>
+        <div class="rating">⭐⭐⭐⭐⭐</div>
+      </div>
+
+      <div class="course-card">
+        <img src="..//image/js.png" alt="JavaScript">
+        <h3><a href="course-details.html">JavaScript for Beginners</a></h3>
+        <p>Category: Programming</p>
+        <div class="rating">⭐⭐⭐⭐⭐</div>
+      </div>
+
+      <div class="course-card">
+        <img src="..//image/c++.png" alt="C++">
+        <h3><a href="course-details.html">C++ for Beginners</a></h3>
+        <p>Category: Programming</p>
+        <div class="rating">⭐⭐⭐⭐⭐</div>
+      </div>
+
+      <div class="course-card">
+        <img src="..//image/database.png" alt="SQL">
+        <h3><a href="course-details.html">SQL for Beginners</a></h3>
+        <p>Category: Programming</p>
+        <div class="rating">⭐⭐⭐⭐⭐</div>
+      </div>
+
+      <div class="course-card">
+        <img src="..//image/c-sharp.png" alt="SQL">
+        <h3><a href="course-details.html">C# for Beginners</a></h3>
+        <p>Category: Programming</p>
+        <div class="rating">⭐⭐⭐⭐⭐</div>
+      </div>
+
+      <!-- Add more course cards here -->
+    </div>
+  </div>
+
+   <script src="../js/certificate.js"></script>
+</body>
+</html>
