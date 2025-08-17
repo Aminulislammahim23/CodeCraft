@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CodeCraft - Course Enrollment</title>
+    <link rel="stylesheet" href="../css/enrollment.css">
+</head>
+<body>
+    <header>
+        <div class="logo">CodeCraft</div>
+        <nav>
+            <ul>
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="courseCatalog.html">Courses</a></li>
+                <li><a href="forum.html">Forum</a></li>
+                <li><a href="progress.html">Progress</a></li>
+                <li><a href="login.html">Account</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <div class="enrollment-container">
+            <h1>Enroll in Your Chosen Course</h1>
+            <p>Complete the form below to finalize your enrollment and start learning!</p>
+
+            <form id="enrollmentForm" novalidate>
+                <div class="form-group">
+                    <label for="fullName">Full Name</label>
+                    <input type="text" id="fullName" name="fullName" required>
+                    <div class="error-message" id="fullNameError"></div>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" name="email" required>
+                    <div class="error-message" id="emailError"></div>
+                </div>
+
+                <div class="form-group">
+                    <label for="courseSelect">Select Course</label>
+                    <select id="courseSelect" name="courseSelect" required>
+                        <option value="">--Please choose a course--</option>
+                        <option value="html">HTML for Beginners</option>
+                        <option value="css">CSS for Beginners</option>
+                        <option value="js">JavaScript for Beginners</option>
+                        <option value="cplusplus">C++ for Beginners</option>
+                        <option value="sql">SQL for Beginners</option>
+                        <option value="csharp">C# for Beginners</option>
+                    </select>
+                    <div class="error-message" id="courseSelectError"></div>
+                </div>
+
+                <div class="form-group">
+                    <label for="paymentMethod">Payment Method</label>
+                    <select id="paymentMethod" name="paymentMethod" required>
+                        <option value="">--Select a payment method--</option>
+                        <option value="creditCard">Credit Card</option>
+                        <option value="paypal">PayPal</option>
+                    </select>
+                    <div class="error-message" id="paymentMethodError"></div>
+                </div>
+
+                <div id="creditCardInfo" class="hidden">
+                    <div class="form-group">
+                        <label for="cardNumber">Card Number</label>
+                        <input type="text" id="cardNumber" name="cardNumber" placeholder="xxxx-xxxx-xxxx-xxxx">
+                        <div class="error-message" id="cardNumberError"></div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="expiryDate">Expiry Date</label>
+                            <input type="text" id="expiryDate" name="expiryDate" placeholder="MM/YY">
+                            <div class="error-message" id="expiryDateError"></div>
+                        </div>
+                        <div class="form-group">
+                            <label for="cvv">CVV</label>
+                            <input type="text" id="cvv" name="cvv" placeholder="123">
+                            <div class="error-message" id="cvvError"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn-submit">Enroll Now</button>
+            </form>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 CodeCraft. All rights reserved.</p>
+    </footer>
+
+    <script src="../js/enrollment.js"></script>
+</body>
+</html>
