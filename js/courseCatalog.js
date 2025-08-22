@@ -1,26 +1,71 @@
-function searchCertificate() {
-  const input = document.getElementById('searchInput').value.trim().toLowerCase();
+// FILTER COURSES
+    const categoryFilter = document.getElementById("category");
+    const levelFilter = document.getElementById("level");
+    const durationFilter = document.getElementById("duration");
+    const courses = document.querySelectorAll(".course-card");
 
+    function filterCourses() {
+      const category = categoryFilter.value;
+      const level = levelFilter.value;
+      const duration = durationFilter.value;
 
-  const dummyCertificate = {
-    course_id: "CS101",
-    user_id: "user_456",
-    certificate_id: "cert_123456",
-    date_issued: "2025-07-20",
-    download_link: "https://example.com/certificates/cert_123456.pdf"
-  };
+      courses.forEach(course => {
+        const courseCategory = course.getAttribute("data-category");
+        const courseLevel = course.getAttribute("data-level");
+        const courseDuration = course.getAttribute("data-duration");
 
+        let show = true;
 
-  if (input === "cs101" || input === "user_456") {
-    document.getElementById('courseId').textContent = dummyCertificate.course_id;
-    document.getElementById('userId').textContent = dummyCertificate.user_id;
-    document.getElementById('certificateId').textContent = dummyCertificate.certificate_id;
-    document.getElementById('dateIssued').textContent = dummyCertificate.date_issued;
-    document.getElementById('downloadLink').href = dummyCertificate.download_link;
+        if (category !== "All" && category !== courseCategory) show = false;
+        if (level !== "All" && level !== courseLevel) show = false;
+        if (duration !== "All" && duration !== courseDuration) show = false;
 
-    document.getElementById('certificateDisplay').style.display = 'block';
-  } else {
-    alert("Certificate not found. Try with 'cs101' or 'user_456' for demo.");
-    document.getElementById('certificateDisplay').style.display = 'none';
-  }
-}
+        course.style.display = show ? "block" : "none";
+      });
+    }
+
+    categoryFilter.addEventListener("change", filterCourses);
+    levelFilter.addEventListener("change", filterCourses);
+    durationFilter.addEventListener("change", filterCourses);
+
+    // MODAL HANDLING
+    const modal = document.getElementById("modal");
+    const modalBody = document.getElementById("modal-body");
+    const closeBtn = document.getElementById("close-btn");
+
+    // View Details
+    document.querySelectorAll(".details-btn").forEach(btn => {
+      btn.addEventListener("click", () => {
+        const course = btn.getAttribute("data-course");
+        modal.style.display = "flex";
+        modalBody.innerHTML = `
+          <h2>${course.toUpperCase()} Course Details</h2>
+          <p>Welcome to the ${course.toUpperCase()} course. Here you will learn fundamentals, projects, and advanced concepts.</p>
+          <ul>
+            <li>Introduction</li>
+            <li>Core Concepts</li>
+            <li>Hands-on Projects</li>
+            <li>Final Quiz</li>
+          </ul>
+        `;
+      });
+    });
+
+    // Preview
+    document.querySelectorAll(".preview-btn").forEach(btn => {
+      btn.addEventListener("click", () => {
+        const videoSrc = btn.getAttribute("data-video");
+        modal.style.display = "flex";
+        modalBody.innerHTML = `
+          <h2>Course Preview</h2>
+          <video controls>
+            <source src="${videoSrc}" type="video/mp4">
+            Your browser does not support video.
+          </video>
+        `;
+      });
+    });
+
+    // Close Modal
+    closeBtn.addEventListener("click", () => modal.style.display = "none");
+    window.addEventListener("click", (e) => { if (e.target === modal) modal.style.display = "none"; });

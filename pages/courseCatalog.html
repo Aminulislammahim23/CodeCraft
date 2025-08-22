@@ -2,12 +2,12 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Course Catalog Dashboard</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Course Catalog - CodeCraft</title>
   <link rel="stylesheet" href="../css/courseCatalog.css">
 </head>
 <body>
-   <header>
+  <header>
         <div class="logo">CodeCraft</div>
         <nav>
             <ul>
@@ -21,74 +21,110 @@
     
     </header>
 
-  <h1>Certification Course Catalog</h1>
-
-  <div class="search-container">
+    <div class="search-container">
     <input type="text" id="searchInput" placeholder="Search by course name...">
     <button onclick="searchCertificate()">Search</button>
   </div>
 
-  <div class="certificate-card" id="certificateDisplay" style="display:none;">
-    <div class="certificate-row"><strong>Course ID:</strong> <span id="courseId">---</span></div>
-  </div>
-
   <div class="container">
-    <div class="filter">
-      <select>
-        <option value="all">All Categories</option>
-        <option value="html">HTML</option>
-        <option value="css">CSS</option>
-        <option value="js">JS</option>
+    <!-- Filters Section -->
+    <aside class="filters">
+      <h3>Filter Courses</h3>
+      <label for="category">Category</label>
+      <select id="category">
+        <option>All</option>
+        <option>Frontend</option>
+        <option>Backend</option>
+        <option>Programming</option>
       </select>
-    </div>
 
-    <div class="course-grid">
-      <div class="course-card">
-        <img src="..//image/html.png" alt="HTML Course">
-        <h3><a href="../course-details.html">HTML for Beginners</a></h3>
-        <p>Category: Programming</p>
-        <div class="rating">⭐⭐⭐⭐☆</div>
+      <label for="level">Difficulty</label>
+      <select id="level">
+        <option>All</option>
+        <option>Beginner</option>
+        <option>Intermediate</option>
+        <option>Advanced</option>
+      </select>
+
+      <label for="duration">Duration</label>
+      <select id="duration">
+        <option>All</option>
+        <option>Short (0-5 hrs)</option>
+        <option>Medium (5-15 hrs)</option>
+        <option>Long (15+ hrs)</option>
+      </select>
+    </aside>
+
+    <!-- Course Gallery -->
+    <main class="courses" id="course-list">
+      <!-- HTML Course -->
+      <div class="course-card" data-category="Frontend" data-level="Beginner" data-duration="Short">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/6/61/HTML5_logo_and_wordmark.svg" alt="HTML Course">
+        <div class="course-info">
+          <h4>Learn HTML</h4>
+          <p>Instructor: Mahim</p>
+          <p>Duration: 5 hrs | Beginner</p>
+          <div class="rating">⭐⭐⭐⭐☆</div>
+          <button class="details-btn" data-course="html">View Details</button>
+          <button class="preview-btn" data-video="https://www.w3schools.com/videos/index.php">Preview</button>
+        </div>
       </div>
 
-      <div class="course-card">
-        <img src="..//image/css.png" alt="CSS">
-        <h3><a href="course-details.html">CSS for Beginners</a></h3>
-        <p>Category: Programming</p>
-        <div class="rating">⭐⭐⭐⭐⭐</div>
+      <!-- CSS Course -->
+      <div class="course-card" data-category="Frontend" data-level="Beginner" data-duration="Medium">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/d/d5/CSS3_logo_and_wordmark.svg" alt="CSS Course">
+        <div class="course-info">
+          <h4>Master CSS</h4>
+          <p>Instructor: Mahim</p>
+          <p>Duration: 7 hrs | Beginner</p>
+          <div class="rating">⭐⭐⭐⭐⭐</div>
+          <button class="details-btn" data-course="css">View Details</button>
+          <button class="preview-btn" data-video="https://www.w3schools.com/videos/index.php">Preview</button>
+        </div>
       </div>
 
-      <div class="course-card">
-        <img src="..//image/js.png" alt="JavaScript">
-        <h3><a href="course-details.html">JavaScript for Beginners</a></h3>
-        <p>Category: Programming</p>
-        <div class="rating">⭐⭐⭐⭐⭐</div>
+      <!-- JavaScript Course -->
+      <div class="course-card" data-category="Frontend" data-level="Intermediate" data-duration="Medium">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6a/JavaScript-logo.png" alt="JavaScript Course">
+        <div class="course-info">
+          <h4>JavaScript Essentials</h4>
+          <p>Instructor: Mahim</p>
+          <p>Duration: 12 hrs | Intermediate</p>
+          <div class="rating">⭐⭐⭐⭐⭐</div>
+          <button class="details-btn" data-course="javascript">View Details</button>
+          <button class="preview-btn" data-video="https://www.w3schools.com/videos/index.php">Preview</button>
+        </div>
       </div>
 
-      <div class="course-card">
-        <img src="..//image/c++.png" alt="C++">
-        <h3><a href="course-details.html">C++ for Beginners</a></h3>
-        <p>Category: Programming</p>
-        <div class="rating">⭐⭐⭐⭐⭐</div>
+      <!-- C++ Course -->
+      <div class="course-card" data-category="Programming" data-level="Intermediate" data-duration="Long">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/1/18/ISO_C%2B%2B_Logo.svg" alt="C++ Course">
+        <div class="course-info">
+          <h4>C++ Programming</h4>
+          <p>Instructor: Mahim</p>
+          <p>Duration: 15 hrs | Intermediate</p>
+          <div class="rating">⭐⭐⭐⭐⭐</div>
+          <button class="details-btn" data-course="cpp">View Details</button>
+          <button class="preview-btn" data-video="https://www.w3schools.com/videos/index.php">Preview</button>
+        </div>
       </div>
+    </main>
+  </div>
 
-      <div class="course-card">
-        <img src="..//image/database.png" alt="SQL">
-        <h3><a href="course-details.html">SQL for Beginners</a></h3>
-        <p>Category: Programming</p>
-        <div class="rating">⭐⭐⭐⭐⭐</div>
-      </div>
-
-      <div class="course-card">
-        <img src="..//image/c-sharp.png" alt="SQL">
-        <h3><a href="course-details.html">C# for Beginners</a></h3>
-        <p>Category: Programming</p>
-        <div class="rating">⭐⭐⭐⭐⭐</div>
-      </div>
-
-      <!-- Add more course cards here -->
+  <!-- Modal -->
+  <div class="modal" id="modal">
+    <div class="modal-content" id="modal-content">
+      <span class="close-btn" id="close-btn">&times;</span>
+      <div id="modal-body"></div>
     </div>
   </div>
 
-   <script src="../js/certificate.js"></script>
+  <footer>
+    <p>&copy; 2025 CodeCraft. All rights reserved.</p>
+  </footer>
+
+  <script src="../js/courseCatalog.js"></script>
 </body>
+
+
 </html>
