@@ -9,4 +9,4 @@ Exercises	                     Coding tasks + solutions	                      ex
 Quizzes	                           Auto-graded MCQs	                              quiz.html
 Certificates	          Progress-based downloadable certificates	              certificate.html
 Forum	                        Q&A threads for help	                          forum.html
-Login/Register	          User accounts and progress tracking	                  login.html, signup.html
+Login/Register	          User accounts and progress tracking	                  login.html, signup.html              need to change
