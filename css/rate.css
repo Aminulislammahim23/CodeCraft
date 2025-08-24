@@ -1,0 +1,61 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background: #f4f4f4;
+  color: #333;
+}
+
+header{
+  background-color: #003366;
+  color: white;
+  padding: 15px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+nav ul {
+    display: flex;
+    list-style: none;
+}
+
+nav ul li {
+    margin: 0 10px;
+}
+
+nav ul li a {
+    color: white;
+    padding: 5px 10px;
+    border-radius: 4px;
+}
+
+nav ul li a:hover {
+    background-color: rgba(255,255,255,0.1);
+}
+
+nav ul li a.active {
+    background-color: var(--primary-color);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+a{
+    text-decoration: none;
+    color: black;
+}
+
+  .course-card { background: white; padding: 20px; border-radius: 10px; box-shadow: 0 2px 6px rgba(0,0,0,0.1); margin-bottom: 20px; }
+  .stars { display: flex; cursor: pointer; }
+  .stars span { font-size: 30px; color: #ccc; margin-right: 5px; }
+  .stars span.hover, .stars span.selected { color: #ffcc00; }
+  textarea { width: 100%; margin-top: 10px; padding: 8px; border-radius: 5px; border: 1px solid #ccc; resize: vertical; }
+  button { margin-top: 10px; padding: 8px 15px; background: #4a90e2; color: white; border: none; border-radius: 5px; cursor: pointer; }
+  button:hover { background: #357ab7; }
+  #filter { margin-bottom: 20px; }

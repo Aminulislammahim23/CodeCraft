@@ -1,0 +1,60 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background: #f4f4f4;
+  color: #333;
+}
+
+header{
+  background-color: #003366;
+  color: white;
+  padding: 15px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+nav ul {
+    display: flex;
+    list-style: none;
+}
+
+nav ul li {
+    margin: 0 10px;
+}
+
+nav ul li a {
+    color: white;
+    padding: 5px 10px;
+    border-radius: 4px;
+}
+
+nav ul li a:hover {
+    background-color: rgba(255,255,255,0.1);
+}
+
+nav ul li a.active {
+    background-color: var(--primary-color);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+a{
+    text-decoration: none;
+    color: black;
+}
+.instructor-card { background: white; border-radius: 10px; padding: 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); margin-bottom: 20px; display: flex; align-items: center; }
+.instructor-photo { width: 120px; height: 120px; border-radius: 50%; object-fit: cover; margin-right: 20px; }
+.instructor-info { flex: 1; }
+.badges span { display: inline-block; background: #4a90e2; color: white; padding: 5px 10px; border-radius: 5px; margin-right: 5px; margin-top: 5px; font-size: 12px; }
+.courses { margin-top: 10px; }
+.courses li { margin: 5px 0; }
+button { margin-top: 10px; padding: 8px 15px; background: #4a90e2; color: white; border: none; border-radius: 5px; cursor: pointer; }
+button:hover { background: #357ab7; }
