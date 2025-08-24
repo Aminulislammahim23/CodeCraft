@@ -1,13 +1,14 @@
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Payment Integration</title>
-  <link rel="stylesheet" href="../css/payment.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Payment Checkout - CodeCraft</title>
+<link rel="stylesheet" href="../css/payment.css">
 </head>
-<body>
-  
-    <header>
+
+
+  <header>
         <div class="logo">CodeCraft</div>
         <nav>
             <ul>
@@ -20,45 +21,43 @@
         </nav>
     
     </header>
+  <main>
+<div class="container">
+  <h2>Checkout</h2>
+  <p>Course: <b>Advanced JavaScript</b> | Price: <b>$49</b></p>
 
-<main>
-    <section class="payment-section">
-      <h2>Payment Details</h2>
-      <label for="courseName">Course Name:</label>
-      <input type="text" id="courseName" placeholder="Selected Course" disabled>
+  <label for="coupon">Enter Coupon Code:</label><br>
+  <input type="text" id="coupon" placeholder="COUPON123">
+  <button onclick="applyCoupon()">Apply Coupon</button>
+  <p id="discount-msg"></p>
 
-      <label for="coupon">Coupon Code:</label>
-      <input type="text" id="coupon" placeholder="Enter coupon code">
-      <button onclick="applyCoupon()">Apply Coupon</button>
+  <h3>Select Payment Method:</h3>
+  <select id="paymentMethod">
+    <option value="card">Credit/Debit Card</option>
+    <option value="paypal">PayPal</option>
+  </select>
 
-      <h3>Payment Method</h3>
-      <label><input type="radio" name="paymentMethod" value="card" checked> Credit/Debit Card</label>
-      <label><input type="radio" name="paymentMethod" value="paypal"> PayPal</label>
+  <div id="cardDetails" style="display:block;">
+    <input type="text" id="cardNumber" placeholder="Card Number">
+    <input type="text" id="expiry" placeholder="MM/YY">
+    <input type="text" id="cvv" placeholder="CVV">
+  </div>
 
-      <div id="cardDetails">
-        <label for="cardNumber">Card Number:</label>
-        <input type="text" id="cardNumber" placeholder="1234 5678 9012 3456">
+  <div id="paypalDetails" style="display:none;">
+    <p>You'll be redirected to PayPal to complete your payment.</p>
+  </div>
 
-        <label for="expiry">Expiry Date:</label>
-        <input type="month" id="expiry">
+  <button onclick="processPayment()">Pay Now</button>
 
-        <label for="cvv">CVV:</label>
-        <input type="text" id="cvv" placeholder="123">
-      </div>
-
-      <div id="paypalDetails" style="display:none;">
-        <p>You'll be redirected to PayPal for secure payment.</p>
-      </div>
-
-      <button onclick="processPayment()">Pay Now</button>
-    </section>
+  <div id="invoice">
+    <h3>Invoice</h3>
+    <p>Course: Advanced JavaScript</p>
+    <p>Paid By: <span id="payerName"></span></p>
+    <p>Amount: $<span id="paidAmount">49</span></p>
+    <p>Date: <span id="paidDate"></span></p>
+    <p>Payment Method: <span id="paidMethod"></span></p>
+  </div>
+</div>
   </main>
-
- <footer>
-    <p>&copy; 2025 Online Learning Platform</p>
-  </footer>
-
-  <script src="../js/payment.js"></script>
-
-</body>
+<script src="../js/payment.js"></script>
 </html>
