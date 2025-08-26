@@ -1,5 +1,5 @@
 # CodeCraft
-It's an Online Learning Platform (web based application)
+It's an Online Learning Platform (web based application) snake
 
 Section	Purpose	Link/Page
 Home	                      Intro to CodeCraft, logo, tagline	                  index.html
