@@ -1,3 +1,10 @@
+<?php
+    session_start();
+    if(!isset($_COOKIE['status'])){
+        header('location: login.php?error=badrequest');
+    }
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -58,5 +65,8 @@
   </div>
 </div>
   </main>
+  <footer>
+    <p>&copy; 2025 CodeCraft. All Rights Reserved.</p>
+  </footer>
 <script src="../assets/js/payment.js"></script>
 </html>
