@@ -1,6 +1,6 @@
 body {
   display: flex;
-  flex-direction: column; /* header on top */
+  flex-direction: column; 
   height: 100vh;
 }
 

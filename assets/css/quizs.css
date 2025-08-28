@@ -1,15 +1,23 @@
-.bg{
-   background: linear-gradient(45deg, #6b48ff, #00ddeb);
+.bg {
+    background: linear-gradient(45deg, #6b48ff, #00ddeb);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
 }
 
-header{
-  background-color: #003366;
-  color: white;
-  padding: 15px 20px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+body {
+    font-family: 'Segoe UI', sans-serif;
+    margin: 0;
+}
+
+header {
+    background-color: #003366;
+    color: white;
+    padding: 15px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
 
 nav ul {
@@ -32,14 +40,7 @@ nav ul li a:hover {
 }
 
 nav ul li a.active {
-    background-color: var(--primary-color);
-}
-
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #2980b9;
 }
 
 a{
@@ -47,60 +48,125 @@ a{
     color: black;
 }
 
-.avatar {
-    border-radius: 50%;
+.quiz-container {
+    background: #fff;
+    padding: 30px 40px;
+    width: 600px;
+    border-radius: 15px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+    animation: fadeIn 0.8s ease-in-out;
+    text-align: center;
+    margin: 50px auto;
 }
 
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
 
-.logo {
-    font-size: 24px;
+.quiz-header h2 {
+    margin-bottom: 20px;
+    color: #2c3e50;
+}
+
+#startScreen {
+    margin-bottom: 20px;
+}
+
+.timer {
+    text-align: right;
+    font-weight: bold;
+    font-size: 16px;
+    color: #e74c3c;
+    margin-bottom: 15px;
+    display: none;
+}
+
+.question-block {
+    text-align: left;
+    margin-bottom: 20px;
+}
+
+.question {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #34495e;
+}
+
+.options label {
+    display: block;
+    background: #f8f9fa;
+    margin: 6px 0;
+    padding: 10px 15px;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.options label:hover {
+    background: #dfe6e9;
+}
+
+input[type="radio"] {
+    margin-right: 8px;
+}
+
+button {
+    margin-top: 15px;
+    padding: 12px 25px;
+    border: none;
+    background: #2980b9;
+    color: white;
+    border-radius: 8px;
+    font-size: 15px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+button:hover {
+    background: #1f6391;
+}
+
+#restartBtn {
+    background: #27ae60;
+    display: none;
+}
+
+#restartBtn:hover {
+    background: #1e8449;
+}
+
+.explanation {
+    margin-top: 10px;
+    padding: 10px;
+    border-radius: 6px;
+    font-size: 14px;
+    background: #f4f9f9;
+}
+
+.correct {
+    color: #27ae60;
     font-weight: bold;
 }
 
-.quiz-container { 
-  background: white; 
-  padding: 30px; 
-  border-radius: 10px; 
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1); 
-  max-width: 600px; margin: 0 auto; 
+.incorrect {
+    color: #c0392b;
+    font-weight: bold;
 }
 
-h2 { color: #4a90e2; }
-  .question { 
-    margin-bottom: 15px; 
-  }
-  .options button { 
-    display: block; 
-    margin: 5px 0; 
-    padding: 10px; 
-    width: 100%; 
-    border: 1px solid #4a90e2; 
-    border-radius: 5px; 
-    cursor: pointer; 
-    background: white; 
-  }
-  .options button:hover { 
-    background: #4a90e2; 
-    color: white; 
-  }
-  #timer { 
-    font-weight: bold; 
-    margin-bottom: 20px; 
-  }
-  #result { 
-    margin-top: 20px; 
-    padding: 15px; 
-    background: #e8f4ea; 
-    border-radius: 8px; 
-    display: none; 
-  }
-  #retakeBtn { 
-    margin-top: 15px; 
-    padding: 8px 15px; 
-    background: #4a90e2; 
-    color: white; 
-    border: none; 
-    border-radius: 5px; 
-    cursor: pointer; 
-  }
+.score-box {
+    text-align: center;
+    font-size: 18px;
+    margin-top: 15px;
+    font-weight: bold;
+}
 
+footer {
+    background: #0077cc;
+    color: white;
+    text-align: center;
+    padding: 1em 0;
+    margin-top: 50px;
+}

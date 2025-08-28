@@ -1,86 +1,99 @@
 const quizData = [
-  {
-    question: "Which of the following is a JavaScript data type?",
-    options: ["String", "HTML", "CSS", "XML"],
-    answer: "String",
-    explanation: "String is a basic data type in JavaScript for text."
-  },
-  {
-    question: "Which symbol is used for comments in JS?",
-    options: ["//", "/* */", "<!-- -->", "#"],
-    answer: "//",
-    explanation: "Single-line comments in JavaScript use //."
-  },
-  {
-    question: "What does '===' mean in JS?",
-    options: ["Equal value & type", "Assign value", "Equal value only", "Not equal"],
-    answer: "Equal value & type",
-    explanation: "=== checks for strict equality: value and type must match."
-  }
-];
+      {
+        question: "What does HTML stand for?",
+        options: ["Hyper Text Markup Language", "High Text Machine Language", "Hyper Transfer Markup Language"],
+        answer: 0,
+        explanation: "HTML stands for Hyper Text Markup Language."
+      },
+      {
+        question: "Which language is used for styling web pages?",
+        options: ["HTML", "CSS", "Python"],
+        answer: 1,
+        explanation: "CSS is used for styling web pages."
+      },
+      {
+        question: "What does JS stand for?",
+        options: ["Java Source", "JavaScript", "Just Script"],
+        answer: 1,
+        explanation: "JS is short for JavaScript."
+      }
+    ];
 
-let currentQuiz = 0;
-let score = 0;
-let timeLeft = 60;
-let timer;
 
-function loadQuiz() {
-  if(currentQuiz >= quizData.length) {
-    showResult();
-    return;
-  }
+let timeLeft = 30;
+    let timer;
 
-  const quiz = quizData[currentQuiz];
-  const quizDiv = document.getElementById('quiz');
-  quizDiv.innerHTML = `<div class="question">${quiz.question}</div><div class="options">${quiz.options.map(o => `<button onclick="selectAnswer('${o}')">${o}</button>`).join('')}</div>`;
-}
+    function startQuiz() {
+      document.getElementById("startScreen").style.display = "none";
+      document.getElementById("quiz").style.display = "block";
+      document.getElementById("submitBtn").style.display = "inline-block";
+      document.getElementById("timer").style.display = "block";
 
-function selectAnswer(selected) {
-  const quiz = quizData[currentQuiz];
-  let msg = '';
-  if(selected === quiz.answer) {
-    score++;
-    msg = `✅ Correct! Explanation: ${quiz.explanation}`;
-  } else {
-    msg = `❌ Incorrect! Explanation: ${quiz.explanation}`;
-  }
-  alert(msg);
-  currentQuiz++;
-  loadQuiz();
-}
-
-function showResult() {
-  clearInterval(timer);
-  const resultDiv = document.getElementById('result');
-  resultDiv.style.display = 'block';
-  resultDiv.innerHTML = `<h3>Quiz Completed!</h3><p>Your Score: ${score} / ${quizData.length}</p>`;
-  if(score < quizData.length) {
-    resultDiv.innerHTML += `<button id="retakeBtn" onclick="retakeQuiz()">Retake Quiz</button>`;
-  }
-}
-
-function retakeQuiz() {
-  currentQuiz = 0;
-  score = 0;
-  timeLeft = 60;
-  document.getElementById('result').style.display = 'none';
-  startTimer();
-  loadQuiz();
-}
-
-function startTimer() {
-  document.getElementById('time').innerText = timeLeft;
-  timer = setInterval(() => {
-    timeLeft--;
-    document.getElementById('time').innerText = timeLeft;
-    if(timeLeft <= 0) {
-      clearInterval(timer);
-      alert("Time's up!");
-      showResult();
+      loadQuiz();
+      startTimer();
     }
-  }, 1000);
-}
 
-// Initialize
-loadQuiz();
-startTimer();
+    function loadQuiz() {
+      const quizDiv = document.getElementById("quiz");
+      quizDiv.innerHTML = "";
+      quizData.forEach((q, i) => {
+        let qDiv = document.createElement("div");
+        qDiv.classList.add("question-block");
+        qDiv.innerHTML = `
+          <p class="question">${i + 1}. ${q.question}</p>
+          <div class="options">
+            ${q.options.map((opt, idx) =>
+              `<label><input type="radio" name="q${i}" value="${idx}"> ${opt}</label>`
+            ).join("")}
+          </div>
+          <div class="explanation" id="exp${i}" style="display:none;"></div>
+        `;
+        quizDiv.appendChild(qDiv);
+      });
+    }
+
+    function startTimer() {
+      timeLeft = 30;
+      document.getElementById("timer").textContent = `Time Left: ${timeLeft}s`;
+      timer = setInterval(() => {
+        timeLeft--;
+        document.getElementById("timer").textContent = `Time Left: ${timeLeft}s`;
+        if (timeLeft <= 0) {
+          clearInterval(timer);
+          submitQuiz();
+        }
+      }, 1000);
+    }
+
+    function submitQuiz() {
+      clearInterval(timer);
+      let score = 0;
+
+      quizData.forEach((q, i) => {
+        let selected = document.querySelector(`input[name="q${i}"]:checked`);
+        let expDiv = document.getElementById(`exp${i}`);
+
+        if (selected && parseInt(selected.value) === q.answer) {
+          score++;
+          expDiv.innerHTML = `<span class="correct">✔ Correct!</span> ${q.explanation}`;
+        } else {
+          expDiv.innerHTML = `<span class="incorrect">✘ Incorrect.</span> ${q.explanation}`;
+        }
+        expDiv.style.display = "block";
+      });
+
+      document.getElementById("scoreBox").textContent = `Your Score: ${score}/${quizData.length}`;
+      document.getElementById("restartBtn").style.display = "inline-block";
+      document.getElementById("submitBtn").style.display = "none";
+    }
+
+
+
+function restartQuiz() {
+      document.getElementById("scoreBox").textContent = "";
+      document.getElementById("restartBtn").style.display = "none";
+      document.getElementById("quiz").style.display = "none";
+      document.getElementById("submitBtn").style.display = "none";
+      document.getElementById("timer").style.display = "none";
+      document.getElementById("startScreen").style.display = "block";
+    }

@@ -1,10 +1,16 @@
+<?php
+    session_start();
+    if(!isset($_COOKIE['status'])){
+        header('location: login.php?error=badrequest');
+    }
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Course Ratings - CodeCraft</title>
-<link rel="stylesheet" href="../css/rate.css">
+<link rel="stylesheet" href="../assets/css/rate.css">
 </head>
 
 <header>
@@ -65,7 +71,7 @@
   </div>
 </div>
 
-<script src="../js/rate.js"></script>
+<script src="../assets/js/rate.js"></script>
 
 </body>
 </html>

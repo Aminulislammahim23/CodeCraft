@@ -1,21 +1,28 @@
+<?php
+    session_start();
+    if(!isset($_COOKIE['status'])){
+        header('location: login.php?error=badrequest');
+    }
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Instructor Dashboard</title>
-  <link rel="stylesheet" href="../assets/css/instructorDashBoard.css">
+  <title>Admin Dashboard</title>
+  <link rel="stylesheet" href="../assets/css/admin.css">
 </head>
 <body>
   <header>
         <div class="logo">CodeCraft</div>
         <nav>
             <ul>
+                <li><h1>welcome home! <?=$_SESSION['username']?></h1></li>
                 <li><a href="index.html">Home</a></li>
                 <li><a href="../view/enrollment.html">Enroll</a></li>
                 <li><a href="../view/progress.html">Progress</a></li>
                 <li><a href="../view/forum.html">Forums</a></li>
-                <li><a href="../view/faq.html">FAQ</a></li>
+                <li><a href='logout.php'>logout </a></li>
             </ul>
         </nav>  
     </header>
@@ -83,6 +90,6 @@
     </div>
   </div>
 
-  <script src="../assets/js/instructorDashBoard.js"></script>
+  <script src="../assets/js/admin.js"></script>
 </body>
 </html>
