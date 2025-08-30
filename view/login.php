@@ -19,8 +19,7 @@
 </head>
 <body>
     <div class="login-container">
-        <h2>Login</h2>
-        <form method="post" action="controller/validation.php" enctype="multipart/form-data">
+        <h2>Login</h2><form method="post" action="/CodeCraft/controllers/validation.php" enctype="multipart/form-data">   
             <div class="input-group">
                 <input type="text" id="username" name="username" required>
                 <label>Username</label>
@@ -39,8 +38,6 @@
             </div>
         </form>
     </div>
-    
- 
     <script src="../js/login.js"></script>
 </body>
 </html>
