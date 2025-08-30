@@ -2,91 +2,121 @@ document.addEventListener('DOMContentLoaded', function () {
     const form = document.getElementById('enrollmentForm');
     const paymentMethodSelect = document.getElementById('paymentMethod');
     const creditCardInfo = document.getElementById('creditCardInfo');
+    const inputs = form.querySelectorAll('input, select');
 
+    // Toggle credit card info based on payment method
     paymentMethodSelect.addEventListener('change', function () {
-        if (this.value === 'creditCard') {
-            creditCardInfo.classList.remove('hidden');
-        } else {
-            creditCardInfo.classList.add('hidden');
+        creditCardInfo.classList.toggle('hidden', this.value !== 'creditCard');
+        if (this.value !== 'creditCard') {
+            clearCreditCardErrors();
         }
     });
 
+    // Real-time validation on input change
+    inputs.forEach(input => {
+        input.addEventListener('input', function () {
+            validateField(this);
+        });
+    });
+
+    // Form submission handler
     form.addEventListener('submit', function (event) {
         event.preventDefault();
         if (validateForm()) {
-            alert('Enrollment successful!');
-            form.reset();
-            creditCardInfo.classList.add('hidden');
+            // Simulate form submission to PHP
+            fetch(form.action, {
+                method: 'POST',
+                body: new FormData(form)
+            })
+            .then(response => response.text())
+            .then(() => {
+                alert('Enrollment successful!');
+                form.reset();
+                creditCardInfo.classList.add('hidden');
+                clearErrors();
+            })
+            .catch(error => console.error('Error:', error));
         }
     });
 
+    function validateField(field) {
+        const errorElement = document.getElementById(field.id + 'Error');
+        let isValid = true;
+
+        switch (field.id) {
+            case 'fullName':
+                isValid = field.value.trim() !== '';
+                errorElement.textContent = isValid ? '' : 'Full Name is required.';
+                break;
+            case 'email':
+                const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                isValid = emailPattern.test(field.value);
+                errorElement.textContent = isValid ? '' : 'Please enter a valid email address.';
+                break;
+            case 'courseSelect':
+                isValid = field.value !== '';
+                errorElement.textContent = isValid ? '' : 'Please select a course.';
+                break;
+            case 'paymentMethod':
+                isValid = field.value !== '';
+                errorElement.textContent = isValid ? '' : 'Please select a payment method.';
+                if (!isValid) break;
+                creditCardInfo.classList.toggle('hidden', field.value !== 'creditCard');
+                if (field.value !== 'creditCard') clearCreditCardErrors();
+                break;
+            case 'cardNumber':
+                const cardNumberPattern = /^[0-9]{13,16}$/;
+                isValid = cardNumberPattern.test(field.value.replace(/-/g, ''));
+                errorElement.textContent = isValid ? '' : 'Please enter a valid card number.';
+                break;
+            case 'expiryDate':
+                const expiryDatePattern = /^(0[1-9]|1[0-2])\/([0-9]{2})$/;
+                isValid = expiryDatePattern.test(field.value);
+                errorElement.textContent = isValid ? '' : 'Please enter a valid expiry date (MM/YY).';
+                break;
+            case 'cvv':
+                const cvvPattern = /^[0-9]{3,4}$/;
+                isValid = cvvPattern.test(field.value);
+                errorElement.textContent = isValid ? '' : 'Please enter a valid CVV.';
+                break;
+        }
+
+        field.style.borderColor = isValid ? '#ccc' : '#e74c3c';
+        return isValid;
+    }
+
     function validateForm() {
         let isValid = true;
-        
-        // Clear previous errors
-        document.querySelectorAll('.error-message').forEach(el => el.textContent = '');
-        document.querySelectorAll('input, select').forEach(el => el.style.borderColor = '#ccc');
+        clearErrors();
 
-        // Full Name Validation
-        const fullName = document.getElementById('fullName');
-        if (fullName.value.trim() === '') {
-            document.getElementById('fullNameError').textContent = 'Full Name is required.';
-            fullName.style.borderColor = '#e74c3c';
-            isValid = false;
-        }
-
-        // Email Validation
-        const email = document.getElementById('email');
-        const emailPattern = /^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$/;
-        if (!emailPattern.test(email.value)) {
-            document.getElementById('emailError').textContent = 'Please enter a valid email address.';
-            email.style.borderColor = '#e74c3c';
-            isValid = false;
-        }
-
-        // Course Selection Validation
-        const courseSelect = document.getElementById('courseSelect');
-        if (courseSelect.value === '') {
-            document.getElementById('courseSelectError').textContent = 'Please select a course.';
-            courseSelect.style.borderColor = '#e74c3c';
-            isValid = false;
-        }
-
-        // Payment Method Validation
-        const paymentMethod = document.getElementById('paymentMethod');
-        if (paymentMethod.value === '') {
-            document.getElementById('paymentMethodError').textContent = 'Please select a payment method.';
-            paymentMethod.style.borderColor = '#e74c3c';
-            isValid = false;
-        } else if (paymentMethod.value === 'creditCard') {
-            // Card Number Validation
-            const cardNumber = document.getElementById('cardNumber');
-            const cardNumberPattern = /^[0-9]{13,16}$/;
-            if (!cardNumberPattern.test(cardNumber.value.replace(/-/g, ''))) {
-                document.getElementById('cardNumberError').textContent = 'Please enter a valid card number.';
-                cardNumber.style.borderColor = '#e74c3c';
+        inputs.forEach(input => {
+            if (!validateField(input)) {
                 isValid = false;
             }
+        });
 
-            // Expiry Date Validation
-            const expiryDate = document.getElementById('expiryDate');
-            const expiryDatePattern = /^(0[1-9]|1[0-2])\\/([0-9]{2})$/;
-            if (!expiryDatePattern.test(expiryDate.value)) {
-                document.getElementById('expiryDateError').textContent = 'Please enter a valid expiry date (MM/YY).';
-                expiryDate.style.borderColor = '#e74c3c';
-                isValid = false;
-            }
-
-            // CVV Validation
-            const cvv = document.getElementById('cvv');
-            const cvvPattern = /^[0-9]{3,4}$/;
-            if (!cvvPattern.test(cvv.value)) {
-                document.getElementById('cvvError').textContent = 'Please enter a valid CVV.';
-                cvv.style.borderColor = '#e74c3c';
-                isValid = false;
-            }
+        if (paymentMethodSelect.value === 'creditCard') {
+            const cardFields = ['cardNumber', 'expiryDate', 'cvv'];
+            cardFields.forEach(fieldId => {
+                const field = document.getElementById(fieldId);
+                if (!validateField(field)) {
+                    isValid = false;
+                }
+            });
         }
 
         return isValid;
+    }
+
+    function clearErrors() {
+        document.querySelectorAll('.error-message').forEach(el => el.textContent = '');
+        inputs.forEach(input => input.style.borderColor = '#ccc');
+    }
+
+    function clearCreditCardErrors() {
+        ['cardNumber', 'expiryDate', 'cvv'].forEach(id => {
+            document.getElementById(id + 'Error').textContent = '';
+            document.getElementById(id).style.borderColor = '#ccc';
+        });
     }
 });
