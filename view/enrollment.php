@@ -1,9 +1,6 @@
 <?php
 session_start();
-if (!isset($_COOKIE['status'])) {
-    header('location: login.php?error=badrequest');
-    exit();
-}
+
 
 
 $fullName = $email = $course = $paymentMethod = $cardNumber = $expiryDate = $cvv = '';
@@ -75,7 +72,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <div class="logo">CodeCraft</div>
         <nav>
             <ul>
-                <li><a href="index.html">Home</a></li>
+                <li><a href="home.php">Home</a></li>
                 <li><a href="../view/enrollment.php">Enroll</a></li>
                 <li><a href="../view/progress.php">Progress</a></li>
                 <li><a href="../view/forum.php">Forums</a></li>
