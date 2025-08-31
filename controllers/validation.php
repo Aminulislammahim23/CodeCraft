@@ -1,6 +1,6 @@
 <?php
 session_start();
-
+if ($_SERVER["REQUEST_METHOD"] === "POST") {
 $username = trim($_REQUEST['username'] ?? '');
 $password = trim($_REQUEST['password'] ?? '');
 
@@ -9,13 +9,17 @@ if($username === "" || $password === ""){
     exit();
 }
 
-if($username === $password){
-    $_SESSION['status'] = true;
-    $_SESSION['username'] = htmlspecialchars($username, ENT_QUOTES, 'UTF-8');
-    header('Location: view/admin.php');
-    exit();
+$validUser = "admin";
+    $validPass = "12345";
+
+    if ($username === $validUser && $password === $validPass) {
+        $_SESSION['username'] = $username;
+        setcookie("status", "true", time() + 3600, "/"); // valid for 1 hour
+        header("Location: ../views/home.php");
+    } else {
+        header("Location: ../views/login.php?error=invalid_user");
+    }
 } else {
-    header('Location: view/login.php?error=invalid_user');
-    exit();
+    header("Location: ../views/login.php?error=badrequest");
 }
 ?>

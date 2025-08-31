@@ -1,29 +1,39 @@
   let finalPrice = 49;
 
-  document.getElementById('paymentMethod').addEventListener('change', function() {
-    if(this.value === 'card') {
-      document.getElementById('cardDetails').style.display = 'block';
-      document.getElementById('paypalDetails').style.display = 'none';
+  function togglePaymentDetails() {
+    const method = document.getElementById('paymentMethod').value;
+    const cardDetails = document.getElementById('cardDetails');
+    const paypalDetails = document.getElementById('paypalDetails');
+
+  if (method === 'card') {
+        cardDetails.style.display = 'block';
+        paypalDetails.style.display = 'none';
+        cardDetails.querySelectorAll('input').forEach(i => i.required = true);
     } else {
-      document.getElementById('cardDetails').style.display = 'none';
-      document.getElementById('paypalDetails').style.display = 'block';
+        cardDetails.style.display = 'none';
+        paypalDetails.style.display = 'block';
+        cardDetails.querySelectorAll('input').forEach(i => i.required = false);
     }
-  });
+}
 
   function applyCoupon() {
     const coupon = document.getElementById('coupon').value.trim();
     const msg = document.getElementById('discount-msg');
-    if(coupon === "DISCOUNT10") {
+    if(coupon === "DISCOUNT10") {                                            //DISCOUNT10
       finalPrice = 49 - 10;
-      msg.innerText = "Coupon applied! New Price: $" + finalPrice;
-    } else {
+      msg.innerText = "Coupon applied! New Price: $" + finalPrice;}
+    else if(coupon === ""){
+      msg.innerText = "";
+      finalPrice = 49;
+    }
+    else {
       msg.innerText = "Invalid coupon code!";
     }
   }
 
-  function processPayment() {
+  function validatePaymentForm() {
     const method = document.getElementById('paymentMethod').value;
-    // Simple validation
+ 
     if(method === 'card') {
       const cardNumber = document.getElementById('cardNumber').value;
       const expiry = document.getElementById('expiry').value;
@@ -33,10 +43,20 @@
         return;
       }
       alert("Processing Card Payment...");
-    } else {
-      alert("Redirecting to PayPal...");
-    }
-
+    } 
+    if (!/^\d{16}$/.test(cardNumber)) {
+            alert("Card number must be 16 digits!");
+            return false;
+        }
+        if (!/^\d{2}\/\d{2}$/.test(expiry)) {
+            alert("Expiry must be in MM/YY format!");
+            return false;
+        }
+        if (!/^\d{3,4}$/.test(cvv)) {
+            alert("CVV must be 3 or 4 digits!");
+            return false;
+        }
+      }
     // Simulate successful payment
     setTimeout(() => {
       const date = new Date().toLocaleDateString();
