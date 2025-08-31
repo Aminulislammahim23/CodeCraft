@@ -1,6 +1,6 @@
 <?php
     session_start();
-    if(!isset($_COOKIE['status'])){
+    if(!isset($_SESSION['status']) && !isset($_COOKIE['status'])){
         header('location: ../view/login.php?error=badrequest');
     }
 ?>
@@ -32,10 +32,10 @@
             <h2>Checkout</h2>
             <p>Course: <b>Advanced JavaScript</b> | Price: <b>$49</b></p>
 
-            
-            <form method="post" action="../controllers/pay.php" id="paymentForm" onsubmit="processPayment(event)">
+
+            <form method="post" action="../controllers/pay.php" id="paymentForm" onsubmit="validatePaymentForm()">
                 <label for="coupon">Enter Coupon Code:</label><br>
-                <input type="text" id="coupon" name="coupon" placeholder="COUPON123">
+                <input type="text" id="coupon" name="coupon" placeholder="DISCOUNT10">
                 <button type="button" onclick="applyCoupon()">Apply Coupon</button>
                 <p id="discount-msg"></p>
 
@@ -58,7 +58,7 @@
                 <button type="submit">Pay Now</button>
             </form>
 
-            <!-- ✅ Invoice Section -->
+            <!--Invoice Section -->
             <div id="invoice" style="display:none;">
                 <h3>Invoice</h3>
                 <p>Course: Advanced JavaScript</p>
