@@ -21,13 +21,11 @@ function validateForm() {
         return false;
     }
 
-    alert("Login successful!");
-    return true;
+    return true; //only return true
 }
 
 document.querySelector('form').addEventListener('submit', function(event) {
-    event.preventDefault();
-    if (validateForm()) {
-        window.location.href = "../index.html";
+    if (!validateForm()) {
+        event.preventDefault(); // stop submit only if invalid
     }
 });

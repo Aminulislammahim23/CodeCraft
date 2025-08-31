@@ -1,4 +1,9 @@
 <?php
+    if(isset($_COOKIE['status'])){
+        header("Location: ../views/home.php");
+        exit();
+    }
+
     if(isset($_GET['error'])){
         $error = $_GET['error'];
         if($error == "invalid_user"){
@@ -19,7 +24,8 @@
 </head>
 <body>
     <div class="login-container">
-        <h2>Login</h2><form method="post" action="/CodeCraft/controllers/validation.php" enctype="multipart/form-data">   
+        <h2>Login</h2>
+        <form method="post" action="/CodeCraft/controllers/validation.php" enctype="multipart/form-data" onsubmit="return validateForm()">
             <div class="input-group">
                 <input type="text" id="username" name="username" required>
                 <label>Username</label>
