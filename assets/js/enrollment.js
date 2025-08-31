@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const creditCardInfo = document.getElementById('creditCardInfo');
     const inputs = form.querySelectorAll('input, select');
 
-    // Toggle credit card info based on payment method
+  
     paymentMethodSelect.addEventListener('change', function () {
         creditCardInfo.classList.toggle('hidden', this.value !== 'creditCard');
         if (this.value !== 'creditCard') {
@@ -12,25 +12,25 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     });
 
-    // Real-time validation on input change
+
     inputs.forEach(input => {
         input.addEventListener('input', function () {
             validateField(this);
         });
     });
 
-    // Form submission handler
+  
     form.addEventListener('submit', function (event) {
         event.preventDefault();
         if (validateForm()) {
-            // Simulate form submission to PHP
+         
             fetch(form.action, {
                 method: 'POST',
                 body: new FormData(form)
             })
             .then(response => response.text())
             .then(() => {
-                alert('Enrollment successful!');
+                window.location.href = '../view/progress.php?success=enrolled';
                 form.reset();
                 creditCardInfo.classList.add('hidden');
                 clearErrors();

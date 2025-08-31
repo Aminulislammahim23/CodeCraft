@@ -1,25 +1,29 @@
 <?php
 session_start();
+
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
-$username = trim($_REQUEST['username'] ?? '');
-$password = trim($_REQUEST['password'] ?? '');
+    $username = trim($_POST['username'] ?? '');
+    $password = $_POST['password'] ?? '';
 
-if($username === "" || $password === ""){
-    echo "Please type username/password first!";
-    exit();
-}
-
-$validUser = "admin";
-    $validPass = "12345";
-
-    if ($username === $validUser && $password === $validPass) {
+  
+    if (isset($_SESSION['signup_credentials']) && 
+        $username === $_SESSION['signup_credentials']['username'] && 
+        $password === $_SESSION['signup_credentials']['password']) {
+    
         $_SESSION['username'] = $username;
-        setcookie("status", "true", time() + 3600, "/"); // valid for 1 hour
-        header("Location: ../views/home.php");
+        setcookie('status', 'true', time() + (86400 * 30), "/"); 
+        unset($_SESSION['signup_credentials']); 
+        header("Location: ../view/home.php");
+        
+        exit();
     } else {
-        header("Location: ../views/login.php?error=invalid_user");
+        
+        header("Location: ../view/login.php?error=invalid_user");
+        exit();
     }
 } else {
-    header("Location: ../views/login.php?error=badrequest");
+    
+    header("Location: ../view/login.php?error=badrequest");
+    exit();
 }
 ?>
