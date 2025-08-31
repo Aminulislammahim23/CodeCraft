@@ -5,10 +5,7 @@ function validateForm() {
         alert("Username cannot be empty");
         return false;
     }
-    if (!username.includes("@")) {
-        alert("Username must be a valid email address (must contain @)");
-        return false;
-    }
+  
 
     var passwordInput = document.getElementById('password');
     var password = passwordInput.value;
@@ -21,13 +18,11 @@ function validateForm() {
         return false;
     }
 
-    alert("Login successful!");
     return true;
 }
 
 document.querySelector('form').addEventListener('submit', function(event) {
-    event.preventDefault();
-    if (validateForm()) {
-        window.location.href = "../index.html";
+    if (!validateForm()) {
+        event.preventDefault();
     }
 });
