@@ -1,6 +1,6 @@
 <?php
 session_start();
-
+// signup
 $errors = [];
 if (isset($_SESSION['signup_errors'])) {
     $errors = $_SESSION['signup_errors'];

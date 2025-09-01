@@ -1,6 +1,6 @@
 <?php
 session_start();
-
+// enrollment
 
 
 $fullName = $email = $course = $paymentMethod = $cardNumber = $expiryDate = $cvv = '';
