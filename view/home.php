@@ -4,6 +4,7 @@ session_start();
 if (!isset($_SESSION['username']) || !isset($_COOKIE['status']) || $_COOKIE['status'] !== 'true') {
     header("Location: login.php");
     exit();
+    /////////// home 
 }
 ?>
 <!DOCTYPE html>
@@ -31,5 +32,6 @@ if (!isset($_SESSION['username']) || !isset($_COOKIE['status']) || $_COOKIE['sta
         <a href="../controllers/logout.php" class="logout-btn">Logout</a>
          
     </div>
+    
 </body>
 </html>
