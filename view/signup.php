@@ -23,7 +23,7 @@ if (isset($_SESSION['signup_errors'])) {
     unset($_SESSION['signup_errors']); 
 }
 
-
+// check
 $old_name = $_SESSION['old_signup_data']['name'] ?? '';
 $old_email = $_SESSION['old_signup_data']['email'] ?? '';
 $old_dob = $_SESSION['old_signup_data']['dob'] ?? '';
