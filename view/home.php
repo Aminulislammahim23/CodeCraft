@@ -4,7 +4,9 @@ session_start();
 if (!isset($_SESSION['username']) || !isset($_COOKIE['status']) || $_COOKIE['status'] !== 'true') {
     header("Location: login.php");
     exit();
-    /////////// home 
+    /////////// home ok 
+
+      /////////// home ok 
 }
 ?>
 <!DOCTYPE html>
