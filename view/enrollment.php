@@ -1,6 +1,6 @@
 <?php
 session_start();
-// enrollment
+
 
 
 $fullName = $email = $course = $paymentMethod = $cardNumber = $expiryDate = $cvv = '';
@@ -16,7 +16,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $expiryDate = trim($_POST['expiryDate'] ?? '');
     $cvv = trim($_POST['cvv'] ?? '');
     $isValid = true;
-// enrollment  valid
+
 
     if (empty($fullName)) {
         $errors['fullName'] = 'Full Name is required.';

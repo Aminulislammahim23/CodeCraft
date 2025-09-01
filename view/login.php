@@ -4,7 +4,9 @@ if (isset($_COOKIE['status'])) {
     header("Location: ../view/home.php");
     exit();
 }
+///// login
 
+///// login
 $err1 = "";
 $err2 = "";
 if (isset($_GET['error'])) {
