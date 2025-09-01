@@ -17,7 +17,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $cvv = trim($_POST['cvv'] ?? '');
     $isValid = true;
 
-
+// enrollment
     if (empty($fullName)) {
         $errors['fullName'] = 'Full Name is required.';
         $isValid = false;
