@@ -4,6 +4,7 @@ session_start();
 //
 //
 //
+//
 $courseNames = [
     'html' => 'HTML for Beginners',
     'css' => 'CSS for Beginners',
