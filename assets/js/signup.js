@@ -1,3 +1,5 @@
+//test comment
+
 function validateForm() {
     var nameInput = document.getElementById('name');
     var name = nameInput.value.trim();
@@ -84,3 +86,5 @@ document.getElementById("signupForm").onsubmit = function (e) {
         window.location.href = "login.html";  
     }
 };
+
+
