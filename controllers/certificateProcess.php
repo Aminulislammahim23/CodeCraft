@@ -26,7 +26,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $_SESSION['errors'] = $errors;
         $_SESSION['studentName'] = $studentName;
         $_SESSION['completionDate'] = $completionDate;
-        header("Location: certificate.php");
+        header("Location: ../view/certificate.php");
         exit();
     }
 
@@ -37,11 +37,11 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
 
     $query = "?name=" . urlencode($studentName) . "&date=" . urlencode($completionDate);
-    header("Location: certificate.php" . $query);
+    header("Location: ../view/certificate.php" . $query);
     exit();
 } else {
 
-    header("Location: certificate.php");
+    header("Location: ../view/certificate.php");
     exit();
 }
 ?>
