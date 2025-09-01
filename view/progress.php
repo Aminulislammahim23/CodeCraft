@@ -15,7 +15,7 @@ $courseNames = [
     'sql' => 'SQL for Beginners',
     'csharp' => 'C# for Beginners'
 ];
-
+//
 $enrolledCourse = $_SESSION['enrolled_course'] ?? null;
 $courseName = $enrolledCourse && isset($courseNames[$enrolledCourse]) ? $courseNames[$enrolledCourse] : null;
 $progress = 0; 
