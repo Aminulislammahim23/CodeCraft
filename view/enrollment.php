@@ -46,7 +46,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $errors['cvv'] = 'Please enter a valid CVV.';
         $isValid = false;
     }
-
+// enrollment valid
     if ($isValid) {
       
         $_SESSION['enrolled_course'] = $course;
