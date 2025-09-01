@@ -5,6 +5,8 @@ if (isset($_COOKIE['status'])) {
     exit();
 }
 ///// login
+
+///// login
 $err1 = "";
 $err2 = "";
 if (isset($_GET['error'])) {
