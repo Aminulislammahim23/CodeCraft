@@ -17,9 +17,9 @@
         <div class="logo">CodeCraft</div>
         <nav>
             <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="../view/enrollment.html">Enroll</a></li>
-                <li><a href="../view/progress.html">Progress</a></li>
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="../view/enrollment.php">Enroll</a></li>
+                <li><a href="../view/progress.php">Progress</a></li>
                 <li><a href="../view/forum.html">Forums</a></li>
                 <li><a href="../view/faq.html">FAQ</a></li>
             </ul>

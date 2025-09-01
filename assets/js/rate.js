@@ -3,7 +3,6 @@ const courses = [
     { ratings: [], reviews: [] }
   ];
 
-  // Hover and select stars
   document.querySelectorAll('.stars').forEach(starDiv => {
     const stars = starDiv.querySelectorAll('span');
     stars.forEach(star => {
@@ -32,7 +31,6 @@ const courses = [
     });
   }
 
-  // Submit review
   function submitReview(index) {
     const card = document.querySelectorAll('.course-card')[index];
     const review = card.querySelector('textarea').value;
@@ -48,7 +46,6 @@ const courses = [
     card.querySelector('textarea').value = '';
   }
 
-  // Filter courses by minimum rating
   document.getElementById('filter').addEventListener('change', e => {
     const minRating = parseInt(e.target.value);
     document.querySelectorAll('.course-card').forEach((card,i) => {
