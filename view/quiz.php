@@ -30,7 +30,7 @@
       <h2>📝 Web Basics Quiz</h2>
     </div>
 
-    <!-- Start Button -->
+
     <div id="startScreen">
       <button onclick="startQuiz()">Start Quiz</button>
     </div>

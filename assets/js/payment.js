@@ -67,4 +67,4 @@
       document.getElementById('invoice').style.display = 'block';
       alert("Payment Successful! Invoice generated.");
     }, 1000);
-  }
+  
