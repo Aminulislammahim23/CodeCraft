@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Instructor List</title>
   <link rel="stylesheet" href="../assets/css/inst.css">
+  <script src="../assets/js/inst.js"></script>
 
 </head>
 <body>
@@ -28,7 +29,7 @@
   <section class="instructor-list">
     <!-- Instructor 1 -->
    
-      <div class="instructor-card">
+      <div class="instructor-card" onclick="showDetails('swarna')">
         <div class="card-header cover"></div>
         <div class="card-body">
           <img src="../assets/image/swarna.jpg" alt="Profile Picture" class="profile-pic small">
@@ -43,7 +44,7 @@
    
 
     <!-- Instructor 2 -->
-    <div class="instructor-card">
+    <div class="instructor-card" onclick="showDetails('mahim')">
       <div class="card-header cover"></div>
       <div class="card-body">
         <img src="../assets/image/mahim.jpeg" alt="Profile Picture" class="profile-pic small">
@@ -56,7 +57,7 @@
     </div>
 
        <!-- Instructor 3 -->
-       <div class="instructor-card">
+       <div class="instructor-card" onclick="showDetails('upoma')">
         <div class="card-header cover"></div>
         <div class="card-body">
           <img src="../assets/image/upoma.jpeg" alt="Profile Picture" class="profile-pic small">
@@ -69,7 +70,7 @@
       </div>
 
          <!-- Instructor 4 -->
-    <div class="instructor-card">
+    <div class="instructor-card" onclick="showDetails('sanjil')">
       <div class="card-header cover"></div>
       <div class="card-body">
         <img src="../assets/image/sanjil.jpeg" alt="Profile Picture" class="profile-pic small">
@@ -81,7 +82,31 @@
       </div>
     </div>
   </section>
+<!-- Profile Modal -->
+<div id="profileModal" class="modal">
+  <div class="modal-content">
+    <span class="close-btn" onclick="closeModal()">&times;</span>
+    <img id="modal-pic" src="" alt="Profile" class="modal-pic">
+    <h3 id="modal-name"></h3>
+    <p id="modal-bio"></p>
+    <p id="modal-specialties"></p>
+    <p id="modal-courses"></p>
+    <button class="message-btn" onclick="openMessageForm()">Message Instructor</button>
+  </div>
+</div>
 
-  <script src="instructors.js"></script>
+<!-- Message Form Modal -->
+<div id="messageModal" class="modal">
+  <div class="modal-content">
+    <span class="close-btn" onclick="closeMessageForm()">&times;</span>
+    <h3>Message <span id="message-instructor-name"></span></h3>
+    <form id="messageForm">
+      <input type="text" id="studentName" placeholder="Your Name" required>
+      <input type="email" id="studentEmail" placeholder="Your Email" required>
+      <textarea id="studentMessage" placeholder="Your Message" required></textarea>
+      <button type="submit" class="send-btn">Send Message</button>
+    </form>
+  </div>
+</div>
 </body>
 </html>
