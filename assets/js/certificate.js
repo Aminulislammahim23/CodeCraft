@@ -18,16 +18,44 @@ async function generateCertificate() {
     }
 
     const doc = new jsPDF({ orientation: "landscape", unit: "pt", format: "a4" });
+    
+    /////////////////////////////////////Background///////////////////////////////////
     doc.setFillColor(240, 240, 255);
     doc.rect(0, 0, doc.internal.pageSize.width, doc.internal.pageSize.height, 'F');
-    doc.setFontSize(36); doc.setTextColor(20, 50, 120); doc.setFont("helvetica", "bold");
+
+    //Title
+    doc.setFontSize(36); 
+    doc.setTextColor(20, 50, 120); 
+    doc.setFont("helvetica", "bold");
     doc.text("Certificate of Completion", doc.internal.pageSize.width/2, 150, {align: "center"});
-    doc.setFontSize(28); doc.setTextColor(0,0,0); doc.setFont("helvetica", "normal");
+
+    //Subtitle
+    doc.setFontSize(28); 
+    doc.setTextColor(0,0,0); 
+    doc.setFont("helvetica", "normal");
     doc.text(`This certificate is proudly presented to`, doc.internal.pageSize.width/2, 220, {align: "center"});
-    doc.setFontSize(32); doc.setFont("helvetica", "bold"); doc.text(studentName, doc.internal.pageSize.width/2, 260, {align: "center"});
-    doc.setFontSize(20); doc.setFont("helvetica", "normal"); doc.text(`for successfully completing the course`, doc.internal.pageSize.width/2, 300, {align: "center"});
-    doc.setFontSize(24); doc.setFont("helvetica", "bold"); doc.text(courseName, doc.internal.pageSize.width/2, 340, {align: "center"});
-    doc.setFontSize(16); doc.setFont("helvetica", "normal"); doc.text(`Date: ${date}`, doc.internal.pageSize.width/2, 400, {align: "center"});
+
+    //Student Name
+    doc.setFontSize(32); 
+    doc.setFont("helvetica", "bold"); 
+    doc.text(studentName, doc.internal.pageSize.width/2, 260, {align: "center"});
+
+    //Completion Message
+    doc.setFontSize(20); 
+    doc.setFont("helvetica", "normal"); 
+    doc.text(`for successfully completing the course`, doc.internal.pageSize.width/2, 300, {align: "center"});
+
+    //Course Name
+    doc.setFontSize(24); 
+    doc.setFont("helvetica", "bold"); 
+    doc.text(courseName, doc.internal.pageSize.width/2, 340, {align: "center"});
+
+    //Date
+    doc.setFontSize(16); 
+    doc.setFont("helvetica", "normal"); 
+    doc.text(`Date: ${date}`, doc.internal.pageSize.width/2, 400, {align: "center"});
+
+    //Save file
     doc.save(`${studentName}_Certificate.pdf`);
 }
 

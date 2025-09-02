@@ -29,7 +29,6 @@
 
 <h1>Course Ratings</h1>
 
-<!-- Filter by minimum rating -->
 <label for="filter">Filter courses by minimum rating:</label>
 <select id="filter">
   <option value="0">All</option>
@@ -40,7 +39,6 @@
   <option value="5">5 Stars</option>
 </select>
 
-<!-- Course Cards -->
 <div id="courses-container">
   <div class="course-card" data-rating="0">
     <h3>HTML Basics</h3>
