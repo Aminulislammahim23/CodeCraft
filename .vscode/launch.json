@@ -1,0 +1,16 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "chrome",
+            "request": "launch",
+            "name": "Launch Current File",
+            "url": "http://localhost/",
+            "webRoot": "${workspaceFolder}",
+            "pathMapping": {
+                "/": "${workspaceFolder}"
+            },
+            "file": "${file}"
+        }
+    ]
+}

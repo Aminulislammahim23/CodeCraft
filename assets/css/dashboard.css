@@ -1,0 +1,273 @@
+/* assets/css/dashboard.css */
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f0f2f5;
+    color: #333;
+}
+
+header {
+    background-color: #fff;
+    padding: 15px 30px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+header h2 {
+    margin: 0;
+    color: #2c3e50;
+    font-size: 1.5em;
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    gap: 25px;
+}
+
+nav ul li {
+    display: inline;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: #3498db;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+nav ul li a.active {
+    color: #2980b9;
+    font-weight: 600;
+}
+
+nav ul li a:hover {
+    color: #2980b9;
+}
+
+main {
+    padding: 30px;
+    min-height: calc(100vh - 100px);
+}
+
+.dashboard h3 {
+    color: #2c3e50;
+    margin-bottom: 10px;
+}
+
+.profile-section {
+    background: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    max-width: 500px;
+    margin: 20px auto;
+    text-align: left;
+}
+
+.profile-section p {
+    margin: 10px 0;
+    color: #7f8c8d;
+}
+
+.profile-section p strong {
+    color: #2c3e50;
+}
+
+footer {
+    text-align: center;
+    padding: 15px;
+    color: #7f8c8d;
+    background: #fff;
+    border-top: 1px solid #eee;
+}
+
+#overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+    animation: fadeIn 0.3s ease;
+}
+
+#profileUpdate {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    width: 300px;
+}
+
+#profileUpdate h4 {
+    color: #2c3e50;
+    margin-top: 0;
+}
+
+#profileUpdate input {
+    width: 100%;
+    margin: 10px 0;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+#profileUpdate button {
+    background-color: #27ae60;
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-right: 10px;
+    transition: background-color 0.3s ease;
+}
+
+#profileUpdate button:hover {
+    background-color: #219653;
+}
+
+/* Quiz Section Styling */
+.quiz-section {
+    background: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    max-width: 500px;
+    margin: 20px auto;
+    text-align: left;
+}
+
+.quiz-section h4 {
+    color: #2c3e50;
+    margin-top: 0;
+}
+
+.quiz-section p {
+    margin: 10px 0;
+    color: #7f8c8d;
+}
+
+.quiz-section ul {
+    padding-left: 20px;
+    margin: 10px 0;
+    color: #7f8c8d;
+}
+
+.quiz-section button {
+    background-color: #3498db;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 15px;
+    transition: background-color 0.3s ease;
+}
+
+.quiz-section button:hover {
+    background-color: #2980b9;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* Existing CSS remains unchanged... */
+
+/* Styling for the welcome message and email section */
+.dashboard p {
+    color: #2c3e50;
+    font-size: 1.1em;
+    margin: 5px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.dashboard p a {
+    color: #e74c3c; /* Reddish color for the email link to stand out */
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.3s ease;
+}
+
+.dashboard p a:hover {
+    color: #c0392b; /* Darker red on hover */
+    text-decoration: underline;
+}
+
+.dashboard p span {
+    color: #7f8c8d; /* Lighter gray for the timestamp */
+    font-size: 0.9em;
+    font-style: italic;
+}
+
+/* Ensure the layout adjusts for smaller screens */
+@media (max-width: 600px) {
+    .dashboard p {
+        flex-direction: column;
+        text-align: center;
+    }
+    .dashboard p a,
+    .dashboard p span {
+        display: block;
+        width: 100%;
+    }
+}
+
+
+.enrolled-courses {
+    background: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    max-width: 500px;
+    margin: 20px auto;
+    text-align: left;
+}
+
+.enrolled-courses h4 {
+    color: #2c3e50;
+    margin-top: 0;
+}
+
+.enrolled-courses ul {
+    padding-left: 20px;
+    margin: 10px 0;
+    color: #7f8c8d;
+}
+
+.enrolled-courses p {
+    margin: 10px 0;
+    color: #7f8c8d;
+}
+
+.enrolled-courses a {
+    color: #3498db;
+    text-decoration: none;
+}
+
+.enrolled-courses a:hover {
+    text-decoration: underline;
+}

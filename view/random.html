@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Basic Quiz</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(135deg, #74ebd5, #ACB6E5);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      margin: 0;
+    }
+
+    .quiz-container {
+      background: #fff;
+      padding: 25px;
+      width: 550px;
+      border-radius: 15px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+      animation: fadeIn 0.8s ease-in-out;
+      text-align: center;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .quiz-header h2 {
+      margin: 0 0 15px;
+      color: #2c3e50;
+    }
+
+    .timer {
+      text-align: right;
+      font-weight: bold;
+      font-size: 14px;
+      color: #e74c3c;
+      margin-bottom: 15px;
+      display: none;
+    }
+
+    .question {
+      font-size: 18px;
+      font-weight: bold;
+      margin-bottom: 10px;
+      color: #34495e;
+      text-align: left;
+    }
+
+    .options label {
+      display: block;
+      background: #f8f9fa;
+      margin: 6px 0;
+      padding: 10px 15px;
+      border-radius: 8px;
+      border: 1px solid #ddd;
+      cursor: pointer;
+      transition: all 0.3s;
+      text-align: left;
+    }
+
+    .options label:hover {
+      background: #dfe6e9;
+    }
+
+    input[type="radio"] {
+      margin-right: 8px;
+    }
+
+    button {
+      margin-top: 15px;
+      padding: 12px 20px;
+      border: none;
+      background: #2980b9;
+      color: white;
+      border-radius: 8px;
+      font-size: 15px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    button:hover {
+      background: #1f6391;
+    }
+
+    #restartBtn {
+      background: #27ae60;
+      display: none;
+    }
+    #restartBtn:hover {
+      background: #1e8449;
+    }
+
+    .explanation {
+      margin-top: 8px;
+      padding: 10px;
+      border-radius: 6px;
+      font-size: 14px;
+      background: #f4f9f9;
+    }
+
+    .correct { color: #27ae60; font-weight: bold; }
+    .incorrect { color: #c0392b; font-weight: bold; }
+
+    .score-box {
+      text-align: center;
+      font-size: 18px;
+      margin-top: 15px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <div class="quiz-container">
+    <div class="quiz-header">
+      <h2>📝 Web Basics Quiz</h2>
+    </div>
+
+    <!-- Start Button -->
+    <div id="startScreen">
+      <button onclick="startQuiz()">Start Quiz</button>
+    </div>
+
+    <div class="timer" id="timer">Time Left: 30s</div>
+    <div id="quiz" style="display:none;"></div>
+
+    <div style="text-align:center;">
+      <button onclick="submitQuiz()" id="submitBtn" style="display:none;">Submit Quiz</button>
+      <button onclick="restartQuiz()" id="restartBtn">Retake Quiz</button>
+    </div>
+    <div class="score-box" id="scoreBox"></div>
+  </div>
+
+  <script>
+    const quizData = [
+      {
+        question: "What does HTML stand for?",
+        options: ["Hyper Text Markup Language", "High Text Machine Language", "Hyper Transfer Markup Language"],
+        answer: 0,
+        explanation: "HTML stands for Hyper Text Markup Language."
+      },
+      {
+        question: "Which language is used for styling web pages?",
+        options: ["HTML", "CSS", "Python"],
+        answer: 1,
+        explanation: "CSS is used for styling web pages."
+      },
+      {
+        question: "What does JS stand for?",
+        options: ["Java Source", "JavaScript", "Just Script"],
+        answer: 1,
+        explanation: "JS is short for JavaScript."
+      }
+    ];
+
+    let timeLeft = 30;
+    let timer;
+
+    function startQuiz() {
+      document.getElementById("startScreen").style.display = "none";
+      document.getElementById("quiz").style.display = "block";
+      document.getElementById("submitBtn").style.display = "inline-block";
+      document.getElementById("timer").style.display = "block";
+
+      loadQuiz();
+      startTimer();
+    }
+
+    function loadQuiz() {
+      const quizDiv = document.getElementById("quiz");
+      quizDiv.innerHTML = "";
+      quizData.forEach((q, i) => {
+        let qDiv = document.createElement("div");
+        qDiv.classList.add("question-block");
+        qDiv.innerHTML = `
+          <p class="question">${i + 1}. ${q.question}</p>
+          <div class="options">
+            ${q.options.map((opt, idx) =>
+              `<label><input type="radio" name="q${i}" value="${idx}"> ${opt}</label>`
+            ).join("")}
+          </div>
+          <div class="explanation" id="exp${i}" style="display:none;"></div>
+        `;
+        quizDiv.appendChild(qDiv);
+      });
+    }
+
+    function startTimer() {
+      timeLeft = 30;
+      document.getElementById("timer").textContent = `Time Left: ${timeLeft}s`;
+      timer = setInterval(() => {
+        timeLeft--;
+        document.getElementById("timer").textContent = `Time Left: ${timeLeft}s`;
+        if (timeLeft <= 0) {
+          clearInterval(timer);
+          submitQuiz();
+        }
+      }, 1000);
+    }
+
+    function submitQuiz() {
+      clearInterval(timer);
+      let score = 0;
+
+      quizData.forEach((q, i) => {
+        let selected = document.querySelector(`input[name="q${i}"]:checked`);
+        let expDiv = document.getElementById(`exp${i}`);
+
+        if (selected && parseInt(selected.value) === q.answer) {
+          score++;
+          expDiv.innerHTML = `<span class="correct">✔ Correct!</span> ${q.explanation}`;
+        } else {
+          expDiv.innerHTML = `<span class="incorrect">✘ Incorrect.</span> ${q.explanation}`;
+        }
+        expDiv.style.display = "block";
+      });
+
+      document.getElementById("scoreBox").textContent = `Your Score: ${score}/${quizData.length}`;
+      document.getElementById("restartBtn").style.display = "inline-block";
+      document.getElementById("submitBtn").style.display = "none";
+    }
+
+    function restartQuiz() {
+      document.getElementById("scoreBox").textContent = "";
+      document.getElementById("restartBtn").style.display = "none";
+      document.getElementById("quiz").style.display = "none";
+      document.getElementById("submitBtn").style.display = "none";
+      document.getElementById("timer").style.display = "none";
+      document.getElementById("startScreen").style.display = "block";
+    }
+  </script>
+</body>
+</html>
