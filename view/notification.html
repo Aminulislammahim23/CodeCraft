@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Notifications - Online Learning Platform</title>
+  <link rel="stylesheet" href="../assets/css/notification.css">
+</head>
+<body>
+  <header>
+    <h1>Online Learning Platform</h1>
+    <div class="notification-container">
+      <div class="bell" id="bell">
+        🔔
+        <span id="unreadCount" class="count">3</span>
+      </div>
+      <div class="dropdown" id="dropdown">
+        <h3>Notifications</h3>
+        <ul id="notificationList">
+          <!-- JS will load notifications here -->
+        </ul>
+        <button id="markAllRead">Mark all as read</button>
+
+        <!-- Notification settings inside same dropdown -->
+        <div class="settings-section">
+          <h4>Notification Settings</h4>
+          <label>
+            <input type="checkbox" id="emailToggle" checked>
+            Email Notifications
+          </label><br>
+          <label>
+            <input type="checkbox" id="pushToggle" checked>
+            Push Notifications
+          </label>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <h2>Welcome!</h2>
+    <p>This is the notification feature demo.</p>
+  </main>
+
+  <script src="../assets/js/notification.js"></script>
+</body>
+</html>
