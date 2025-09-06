@@ -117,4 +117,157 @@ body {
     background-color: #e0e0e0; /* fallback background */
   }
   
-  
+  /* assets/css/instructor.css */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+
+header {
+    background-color: #333;
+    color: white;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo .brand {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    align-items: center;
+}
+
+nav ul li {
+    margin-left: 20px;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+}
+
+nav ul li a i {
+    margin-right: 5px;
+}
+
+main {
+    padding: 20px;
+}
+
+h1 {
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.instructors-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+}
+
+.instructor-card {
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+.instructor-photo {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.instructor-info {
+    padding: 15px;
+    flex-grow: 1;
+}
+
+.instructor-info h2 {
+    margin: 0 0 10px;
+    color: #2c3e50;
+}
+
+.instructor-info p {
+    margin: 0 0 15px;
+    color: #7f8c8d;
+}
+
+.badges span {
+    display: inline-block;
+    background: #3498db;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 12px;
+    margin-right: 5px;
+    margin-bottom: 5px;
+}
+
+.courses {
+    list-style: none;
+    padding: 0;
+    color: #34495e;
+}
+
+.courses li {
+    margin-bottom: 5px;
+}
+
+.instructor-info button {
+    background-color: #e74c3c;
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 100%;
+}
+
+.instructor-info button:hover {
+    background-color: #c0392b;
+}
+
+.progress-section {
+    margin-top: 20px;
+}
+
+#courseFilter {
+    padding: 5px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+th, td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+th {
+    background-color: #2c3e50;
+    color: white;
+}
+
+tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
