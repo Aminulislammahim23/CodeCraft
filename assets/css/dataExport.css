@@ -1,0 +1,27 @@
+.export-container {
+  max-width: 600px;
+  margin: 50px auto;
+  padding: 30px;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.export-form label, .export-form select, .export-form button {
+  display: block;
+  width: 100%;
+  margin: 10px 0;
+}
+
+.export-form button {
+  background-color: #28a745;
+  color: white;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.export-form button:hover {
+  background-color: #218838;
+}
