@@ -10,6 +10,7 @@
     require_once('../model/userMod.php');
     $users = getAllUser();
     $instructors = getAllInstructors();
+    $students = getAllStudents();
 
     require_once('../model/courseMod.php');  // course model
     $courses = getAllCourses();
@@ -132,7 +133,7 @@
                 <td>Course</td>
                 <td>ACTION</td>
             </tr>
-        <?php  foreach($roleStudent as $r){ ?>
+        <?php  foreach($students as $r){ ?>
             <tr>
                 <td><?php echo $r['id']; ?> </td>
                 <td><?=$r['username'] ?> </td>

@@ -32,21 +32,21 @@ function getAllUser() {
 
 
 function addUser($user){
-        $con = getConnection();
-        $sql = "insert into users values(null, '{$user['name']}' ,'{$user['username']}','{$user['email']}', '{$user['password']}', '{$user['dob']}','{$user['role']}')";
-        if(mysqli_query($con, $sql)){
-            return true;
-        }else{
-            return false;
-        }
+    $con = getConnection();
+    $sql = "insert into users values(null, '{$user['name']}' ,'{$user['username']}','{$user['email']}', '{$user['password']}', '{$user['dob']}','{$user['role']}',null)";
+    if(mysqli_query($con, $sql)){
+        return true;
+    }else{
+     return false;
+    }
 }
 
 function getUserById($id){
-        $con = getConnection();
-        $sql = "select * from users where id={$id}";
-        $result = mysqli_query($con, $sql);
-        $row = mysqli_fetch_assoc($result);
-        return $row;
+    $con = getConnection();
+    $sql = "select * from users where id={$id}";
+    $result = mysqli_query($con, $sql);
+    $row = mysqli_fetch_assoc($result);
+    return $row;
 }
 
 function getAllInstructors() {
@@ -54,10 +54,57 @@ function getAllInstructors() {
     $sql = "SELECT * FROM users WHERE role = 'instructor'" ;
     $result = mysqli_query($con, $sql);
 
-    $users = [];
+    $instructors = [];
     while ($row = mysqli_fetch_assoc($result)) {
-        $users[] = $row;
+        $instructors[] = $row;
     }
 
-    return $users;
+    return $instructors;
+}
+
+function getAllStudents(){
+    $con = getConnection();
+    $sql = "SELECT * FROM users WHERE role = 'student'" ;
+    $result = mysqli_query($con, $sql);
+
+    $students = [];
+    while ($row = mysqli_fetch_assoc($result)) {
+        $students[] = $row;
+    }
+
+    return $students;
+}
+
+    
+
+
+function updateUser($user){
+    $con = getConnection();
+
+    $sql = "UPDATE users 
+SET name='{$user['name']}', username='{$user['username']}', email='{$user['email']}',
+    password='{$user['password']}', dob='{$user['dob']}', role='{$user['role']}', avatar='{$user['avatar']}'
+WHERE id={$user['id']};";
+
+    $result = mysqli_query($con, $sql);
+
+    if(!$result){
+        echo "Update Failed: " . mysqli_error($con);
+        return false;
+    }
+    return true;
+}
+    
+
+function deleteUser($id){
+    $con = getConnection();
+
+    $sql = "DELETE FROM users WHERE id={$id}";
+    $result = mysqli_query($con, $sql);
+
+    if(!$result){
+        echo "Delete Failed: " . mysqli_error($con);
+        return false;
+    }
+    return true;
 }

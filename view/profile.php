@@ -2,16 +2,21 @@
 session_start();
 require_once('../model/userMod.php');
 
+// Authentication check
 if(!isset($_COOKIE['status']) || !isset($_SESSION['user_id'])){
     header('location: ../view/login.php?error=badrequest');
     exit();
 }
+
 $id = $_SESSION['user_id'];
 $user = getUserById($id);
 
 if(!$user){
     die("User not found!");
 }
+
+// Avatar fallback
+$avatarPath = !empty($user['avatar']) ? $user['avatar'] : "assets/uploads/imgP/default.jpg";
 ?>
 
 <!doctype html>
@@ -24,15 +29,25 @@ if(!$user){
 </head>
 <body>
     <header>
-      
-        <div class="logo">CodeCraft 
-          <h1>Hello! <?= htmlspecialchars($_SESSION['username']) ?></h1>
-        </div>
+        <div class="logo">CodeCraft</div>
+        <h1>Hello! <?= htmlspecialchars($_SESSION['username']) ?></h1>
         <nav>
             <ul>
-                <li><a href="../view/student.php">Home</a></li>
-                <li><a href="../view/enrollment.php">Enroll</a></li>
-                <li><a href="../view/progress.php">Progress</a></li>
+                <li>
+                <?php
+                $role = $_SESSION['role'] ?? '';
+                if ($role === 'admin') {
+                    $homeLink = '../view/adminDash.php';
+                } elseif ($role === 'instructor') {
+                    $homeLink = '../view/instructorDash.php';
+                } else {
+                    $homeLink = '../view/studentDash.php';
+                }
+                ?>
+                <a href="<?= $homeLink ?>">Home</a>
+                </li>
+                <!-- <li><a href="../view/enrollment.php">Enroll</a></li>
+                <li><a href="../view/progress.php">Progress</a></li> -->
                 <li><a href="../controller/logout.php">Logout</a></li>
             </ul>
         </nav>  
@@ -49,12 +64,12 @@ if(!$user){
     <!-- View Profile -->
     <div class="card section" id="view">
       <h3>View Profile</h3>
-      <p><b>Name:</b> <span><?= htmlspecialchars($user['username']) ?></span></p><br>
+      <p><b>Name:</b> <span><?= htmlspecialchars($user['name']) ?></span></p><br>
+      <p><b>Username:</b> <span><?= htmlspecialchars($user['username']) ?></span></p><br>
       <p><b>Email:</b> <span><?= htmlspecialchars($user['email']) ?></span></p><br>
-      <p><b>Phone:</b> <span><?= htmlspecialchars($user['phone']) ?></span></p><br>
-      <p><b>Date of Birth:</b> <span><?= htmlspecialchars($user['dob']) ?></span></p><br>
-      <p><b>Avatar:</b><br>
-        <img src="../<?= $user['avatar'] ?: 'assets/img/default-avatar.png' ?>" width="120" height="120" style="border-radius:50%">
+      <p><b>Date of Birth:</b> <span><?= htmlspecialchars($user['dob']) ?></span></p><br><br>
+      <p><b>Profile Picture</b><br><br>
+        <img src="../<?= htmlspecialchars($avatarPath) ?>" width="180" height="180" style="border-radius:50%">
       </p>
     </div>
 
@@ -62,11 +77,15 @@ if(!$user){
     <div class="card section" id="edit" style="display:none;">
       <h3>Edit Profile</h3>
       <form action="../controller/updateProfile.php" method="post" enctype="multipart/form-data">
-        <input type="hidden" name="id" value="<?= $user['id'] ?>">
+        <input type="hidden" name="id" value="<?= htmlspecialchars($user['id']) ?>">
         
         <div class="grid-2">
           <div>
             <label>Name</label>
+            <input type="text" name="name" value="<?= htmlspecialchars($user['name']) ?>">
+          </div>
+          <div>
+            <label>Username</label>
             <input type="text" name="username" value="<?= htmlspecialchars($user['username']) ?>">
           </div>
           <div>
@@ -75,29 +94,18 @@ if(!$user){
           </div>
           <div>
             <label>Password</label>
-            <input type="password" name="password" placeholder="Enter new password (leave blank to keep old)">
-          </div>
-          <div>
-            <label>Phone</label>
-            <input type="text" name="phone" value="<?= htmlspecialchars($user['phone']) ?>">
+            <input type="password" name="password" placeholder="Enter new password">
           </div>
           <div>
             <label>Date of Birth</label>
             <input type="date" name="dob" value="<?= htmlspecialchars($user['dob']) ?>">
           </div>
-          <div>
-            <!-- <label>Role</label>
-            <select name="role">
-              <option value="student" <?= $user['role']=='student'?'selected':'' ?>>Student</option>
-              <option value="instructor" <?= $user['role']=='instructor'?'selected':'' ?>>Instructor</option>
-              <option value="admin" <?= $user['role']=='admin'?'selected':'' ?>>Admin</option>
-            </select> -->
-          </div>
         </div>
 
         <div class="avatar-editor">
           <label>Profile Picture</label><br>
-          <img id="avatarPreview" src="../<?= $user['avatar'] ?: 'assets/img/default-avatar.png' ?>" width="120" height="120" style="border-radius:50%"><br><br>
+          <img id="avatarPreview" src="../<?= htmlspecialchars($avatarPath) ?>" 
+               width="120" height="120" style="border-radius:50%"><br><br>
           <input type="file" name="avatar" id="avatarFile" accept="image/*" onchange="previewAvatar(event)">
         </div>
 
