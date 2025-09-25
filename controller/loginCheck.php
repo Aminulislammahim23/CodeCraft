@@ -18,6 +18,7 @@ if ($email == "" || $password == "") {
         $_SESSION['user_id']   = $dbUser['id'];
         $_SESSION['username']  = $dbUser['username'];
         $_SESSION['role']      = $dbUser['role'];
+        $_SESSION['avatar']    = $dbUser['avatar'];
 
         
         if ($dbUser['role'] === 'admin') {
