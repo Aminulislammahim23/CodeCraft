@@ -9,12 +9,17 @@
 
     require_once('../model/userMod.php');
     $users = getAllUser();
+    $instructors = getAllInstructors();
 
+    require_once('../model/courseMod.php');  // course model
+    $courses = getAllCourses();
 
-    $dashboard = $_SESSION['dashboard'] ?? [
-    'totalCourses' => 0,
-    'totalStudents' => 0,
-    'certificatesIssued' => 0
+    require_once('../model/AdminDashMod.php');
+    $dashboard = [
+    'totalCourses'      => getTotalCourses(),
+    'totalStudents'     => getTotalStudents(),
+    'totalInstructors'  => getTotalInstructors(),
+    'certificatesIssued'=> getCertificatesIssued()
 ];
 ?>
 <!DOCTYPE html>
@@ -56,29 +61,31 @@
       <h3>Dashboard Overview</h3>
       <p><strong>Total Courses:</strong> <?= $dashboard['totalCourses']; ?></p>
       <p><strong>Total Students:</strong> <?= $dashboard['totalStudents']; ?></p>
-      <p><strong>Certificates Issued:</strong> <?= $dashboard['certificatesIssued']; ?></p>
+      <p><strong>Total Instructors:</strong> <?= $dashboard['totalInstructors']; ?></p>
+        <p><strong>Certificates Issued:</strong> <?= $dashboard['certificatesIssued']; ?></p>
     </div>
 
- 
+    
+
     <div class="card section" id="courses" style="display:none;">
       <h3>Manage Courses</h3>
-      <a href="../view/addCourse.php">+ Add New Course</a>
+      <button onclick="addCourse()">+ Add New Course</button>
       <table border="1">
             <tr>
                 <td>ID</td>
-                <td>Course Name</td>
+                <td>Title</td>
                 <td>Price</td>
                 <td>ACTION</td>
             </tr>
-        <?php  foreach($course as $c){ ?>
+        <?php  foreach($courses as $c){ ?>
             <tr>
-                <td><?php echo $c['id']; ?> </td>
-                <td><?=$c['course'] ?> </td>
+                <td><?php echo $c['course_id']; ?> </td>
+                <td><?=$c['title'] ?> </td>
                 <td><?=$c['price'] ?></td>
                 <td>
-                <a href='editCourse.php?id=<?=$c['id']?>'>EDIT </a>  |
-                <a href='detailsCourse.php?id=<?=$c['id']?>'>DETAILS </a>  |
-                <a href='deleteCourse.php?id=<?=$c['id']?>'>DELETE </a> 
+                <a href='editCourse.php?id=<?=$c['course_id']?>'>EDIT </a>  |
+                <a href='detailsCourse.php?id=<?=$c['course_id']?>'>DETAILS </a>  |
+                <a href='deleteCourse.php?id=<?=$c['course_id']?>'>DELETE </a> 
                 </td>
             </tr>
 
@@ -97,13 +104,13 @@
                 <td>EMAIL</td>
                 <td>ACTION</td>
             </tr>
-        <?php  foreach($users as $u){ ?>
+        <?php  foreach($instructors as $i){ ?>
             <tr>
-                <td><?php echo $u['id']; ?> </td>
-                <td><?=$u['username'] ?> </td>
-                <td><?=$u['email'] ?></td>
+                <td><?php echo $i['id']; ?> </td>
+                <td><?=$i['username'] ?> </td>
+                <td><?=$i['email'] ?></td>
                 <td>
-                    <a href='editUser.php?id=<?=$u['id']?>'>EDIT </a> |
+                    <a href='editUser.php?id=<?=$i['id']?>'>EDIT </a> |
                     <a href='detailsUser.php'>DETAILS </a> |
                     <a href='deleteUser.php'>DELETE </a> 
                 </td>
@@ -149,5 +156,6 @@
       <p> No issued certificates</p>
       <button onclick="alert('Certificate Issued!')">Issue Certificate</button>
     </div>
+    <script src="../assets/js/adminDash.js"></script>
 </body>
 </html>

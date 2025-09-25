@@ -48,3 +48,16 @@ function getUserById($id){
         $row = mysqli_fetch_assoc($result);
         return $row;
 }
+
+function getAllInstructors() {
+    $con = getConnection();
+    $sql = "SELECT * FROM users WHERE role = 'instructor'" ;
+    $result = mysqli_query($con, $sql);
+
+    $users = [];
+    while ($row = mysqli_fetch_assoc($result)) {
+        $users[] = $row;
+    }
+
+    return $users;
+}
