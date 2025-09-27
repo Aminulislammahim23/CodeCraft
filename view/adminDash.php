@@ -63,7 +63,7 @@
     <a href="#" onclick="showSection('revenue')">📥 Revenue</a>
     <a href="#" onclick="showSection('messages')">💬 Messages</a>
     <a href="#" onclick="showSection('export')">📥 Export</a>
-    <a href="profile.php">⚙ Profile</a>
+    <a href="profile.php">⚙ Profile Setting</a>
   </div>
   <div class="main">
  

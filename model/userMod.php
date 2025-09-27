@@ -33,7 +33,7 @@ function getAllUser() {
 
 function addUser($user){
     $con = getConnection();
-    $sql = "insert into users values(null, '{$user['name']}' ,'{$user['username']}','{$user['email']}', '{$user['password']}', '{$user['dob']}','{$user['role']}',null)";
+    $sql = "insert into users values(null, '{$user['name']}' ,'{$user['username']}','{$user['password']}', '{$user['email']}', '{$user['dob']}','{$user['role']}',null)";
     if(mysqli_query($con, $sql)){
         return true;
     }else{
@@ -82,8 +82,8 @@ function updateUser($user){
     $con = getConnection();
 
     $sql = "UPDATE users 
-SET name='{$user['name']}', username='{$user['username']}', email='{$user['email']}',
-    password='{$user['password']}', dob='{$user['dob']}', role='{$user['role']}', avatar='{$user['avatar']}'
+SET name='{$user['name']}', username='{$user['username']}', password='{$user['password']}',
+    email='{$user['email']}', dob='{$user['dob']}', role='{$user['role']}', avatar='{$user['avatar']}'
 WHERE id={$user['id']};";
 
     $result = mysqli_query($con, $sql);
@@ -107,4 +107,14 @@ function deleteUser($id){
         return false;
     }
     return true;
+}
+
+function addSt($user){
+    $con = getConnection();
+    $sql = "insert into students values(null, '{$user['student_id']}' ,'{$user['user_id']}','{$user['enroll_date']}', '{$user['total_courses_enrolled']}', '{$user['total_courses_completed']}','{$user['learning_streak']}','{$user['certificates_earned']}')";
+    if(mysqli_query($con, $sql)){
+        return true;
+    }else{
+     return false;
+    }
 }

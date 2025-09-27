@@ -57,10 +57,9 @@ if (!isset($_COOKIE['status'])) {
     <a href="#" onclick="showSection('courses')">📚 My Courses</a>
     <a href="#" onclick="showSection('instructor')">📝 Assignments</a>
     <a href="#" onclick="showSection('students')">👥 Students</a>
-    <a href="#" onclick="showSection('revenue')">📥 Revenue</a>
+    <a href="#" onclick="showSection('export')">🎥 Live Class</a>
     <a href="#" onclick="showSection('messages')">✉ Messages</a>
-    <a href="#" onclick="showSection('export')">live class</a>
-    <a href="profile.php">⚙ Profile</a>
+    <a href="profile.php">⚙ Profile Setting</a>
   </div>
   <div class="main">
  
@@ -75,31 +74,43 @@ if (!isset($_COOKIE['status'])) {
     
 
     <div class="card section" id="courses" style="display:none;">
-      <h3>Manage Courses</h3>
-      <button onclick="addCourse()">+ Add New Course</button>
-      <table border="1">
-            <tr>
-                <td>ID</td>
-                <td>Title</td>
-                <td>Price</td>
-                <td>ACTION</td>
-            </tr>
-        <?php  foreach($courses as $c){ ?>
-            <tr>
-                <td><?php echo $c['course_id']; ?> </td>
-                <td><?=$c['title'] ?> </td>
-                <td><?=$c['price'] ?></td>
-                <td>
-                <a href='editCourse.php?id=<?=$c['course_id']?>'>EDIT </a>  |
-                <a href='detailsCourse.php?id=<?=$c['course_id']?>'>DETAILS </a>  |
-                <a href='deleteCourse.php?id=<?=$c['course_id']?>'>DELETE </a> 
-                </td>
-            </tr>
+  <h3>Manage Courses</h3>
+  <button onclick="toggleAddCourse()">+ Add New Course</button>
+  <div id="addCourseForm" style="display:none; margin-top:15px; padding:15px; border:1px solid #ccc; border-radius:8px; background:#f9f9f9;">
+      <h4>Add New Course</h4>
+      <form method="POST" action="../controller/addCourse.php">
+          <label>Title:</label><br>
+          <input type="text" name="title" required style="width:100%; padding:8px; margin:5px 0;"><br>
+          
+          <label>Price:</label><br>
+          <input type="number" name="price" required style="width:100%; padding:8px; margin:5px 0;"><br>
+          
+          <button type="submit" style="background:#4CAF50; color:white; padding:8px 15px; border:none; border-radius:5px; cursor:pointer;">Save</button>
+          <button type="button" onclick="toggleAddCourse()" style="background:#f44336; color:white; padding:8px 15px; border:none; border-radius:5px; cursor:pointer;">Cancel</button>
+      </form>
+  </div>
 
-        <?php } ?>
-
-        </table>
-    </div>
+  <table border="1" style="margin-top:15px; border-collapse:collapse; width:100%;">
+    <tr style="background:#f0f0f0;">
+        <td>ID</td>
+        <td>Title</td>
+        <td>Price</td>
+        <td>ACTION</td>
+    </tr>
+    <?php foreach($courses as $c){ ?>
+    <tr>
+        <td><?php echo $c['course_id']; ?></td>
+        <td><?=$c['title'] ?></td>
+        <td><?=$c['price'] ?></td>
+        <td>
+            <a href='editCourse.php?id=<?=$c['course_id']?>'>EDIT</a> |
+            <a href='detailsCourse.php?id=<?=$c['course_id']?>'>DETAILS</a> |
+            <a href='deleteCourse.php?id=<?=$c['course_id']?>'>DELETE</a>
+        </td>
+    </tr>
+    <?php } ?>
+  </table>
+</div>
 
 <div class="card section" id="instructor" style="display:none;">
       <h3>Manage Instructors</h3>

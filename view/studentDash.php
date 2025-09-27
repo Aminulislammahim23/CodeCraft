@@ -8,7 +8,16 @@ if (!isset($_COOKIE['status'])) {
 <?php
           require_once('../controller/auth.php');
           checkRole(['student']);   // only student can access
-        ?>
+
+
+
+    require_once('../model/studentDashMod.php');
+    $dashboard = [
+    'totalCourses'      => getTotalCourses(),
+    'certificatesIssued'=> getCertificatesIssued()
+];
+?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -16,7 +25,7 @@ if (!isset($_COOKIE['status'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Student Dashboard</title>
-    <link rel="stylesheet" href="../assets/css/studentDash.css">
+    <link rel="stylesheet" href="../assets/css/stDash.css">
 </head>
 <body>
     <header>
@@ -39,25 +48,45 @@ if (!isset($_COOKIE['status'])) {
 
         <div class="cards">
             <div class="card">
-                <h4>📊 Last Quiz Score</h4>
-                <p id="lastScore">Loading...</p>
+                <h4>📊 Courses Enrolled </h4>
+                <p id=""><?= $dashboard['totalCourses']; ?></p>
             </div>
 
             <div class="card">
-                <h4>✅ Completed Quizzes</h4>
+                <h4>✅ Courses Completed</h4>
+                <p><?= $dashboard['certificatesIssued']; ?></p>
+            </div>
+
+            <div class="card">
+                <h4>🏆 Certificates Earned</h4>
+                <p><?= $dashboard['certificatesIssued']; ?></p>
+            </div>
+
+             <div class="card">
+                <h4>🔥Learning Streak </h4>
+                <p><?= $dashboard['certificatesIssued']; ?></p>
+            </div>
+
+            <div class="long-card">
+                <h1> Continue Learning </h1>
                 <ul id="quizHistory">
-                    <li>No quizzes completed</li>
+                    <li>Python Fundamentals</li>
+                    <li>Lesson 5: Functions and Modules</li>
+                    <li>6/10 lessons completed 60% complete</li>
                 </ul>
             </div>
 
-            <div class="card">
+            
+
+            <!-- <div class="card">
                 <h4>🚀 Quick Actions</h4>
                 <button onclick="window.location.href='../view/courseQZ.php'">Start a New Quiz</button>
                 <button onclick="window.location.href='../view/progress.html'">View Progress</button>
                 <button onclick="window.location.href='../view/enrollment.php'">Enroll in a Course</button>
                 <button onclick="window.location.href='../view/forum.html'">Visit Forum</button>
                 <button onclick="window.location.href='../view/faq.html'">View FAQs</button>
-            </div>
+            </div> -->
+
         </div>
     </main>
 
@@ -65,6 +94,6 @@ if (!isset($_COOKIE['status'])) {
         <p>© 2025 CodeCraft Student Dashboard</p>
     </footer>
 
-    <script src="../assets/js/dashboard.js"></script>
+    <script src="../assets/js/dashboard.js"></script> 
 </body>
 </html>

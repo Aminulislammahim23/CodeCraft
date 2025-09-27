@@ -5,7 +5,3 @@ function showSection(id){
     const target = document.getElementById(id);
     if(target) target.style.display = 'block';
 }
-
-function addCousrse(){
-    
-}
