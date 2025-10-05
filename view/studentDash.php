@@ -34,10 +34,10 @@ if (!isset($_COOKIE['status'])) {
             <ul>
                 <li><a href="student.php" class="active">Dashboard</a></li>
                 <li><a href="profile.php">Manage Profile</a></li>
-                <li><a href="../view/progress.html">Progress</a></li>
+                <li><a href="../view/progress.php">Progress</a></li>
                 <li><a href="../view/enrollment.php">Enrollment</a></li>
-                <li><a href="../view/forum.html">Forum</a></li>
-                <li><a href="../view/faq.html">FAQ</a></li>
+                <li><a href="../view/forum.php">Forum</a></li>
+                <li><a href="../view/faq.php">FAQ</a></li>
                 <li><a href="../controller/logout.php">Logout</a></li>
             </ul>
         </nav>

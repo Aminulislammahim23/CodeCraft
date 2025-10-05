@@ -2,9 +2,11 @@
 if(isset($_GET['error'])){
     $error = $_GET['error'];
     if($error == "invalid_user"){
-        $err1 == "please type valid username/password!";
+        $err1 = "please type valid username/password!";
+        echo $err1;
     }elseif($error == 'badrequest'){
-        $err2== "please login first";
+        $err2 = "please login first";
+        echo $err2;
     }
 }
 ?>
