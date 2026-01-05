@@ -1,0 +1,56 @@
+body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #074f6b, #071630);
+            margin: 0;
+            padding: 0;
+            display: flex;
+            height: 100vh;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .container {
+            background: #fff;
+            padding: 40px;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+            width: 350px;
+        }
+
+        h2 {
+            margin-bottom: 25px;
+            color: #333;
+        }
+
+        .btn {
+            display: block;
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+
+        .btn-instructor {
+            background: #2575fc;
+            color: white;
+        }
+
+        .btn-instructor:hover {
+            background: #1a5bd7;
+        }
+
+        .btn-student {
+            background: #6a11cb;
+            color: white;
+        }
+
+        .btn-student:hover {
+            background: #520da1;
+        }
