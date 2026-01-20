@@ -1,0 +1,49 @@
+<?php
+session_start();
+require_once '../../models/courseModel.php';
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    if (!isset($_SESSION['role']) || !in_array($_SESSION['role'], ['admin', 'instructor'])) {
+        header("Location: ../../views/auth/login.php?error=unauthorized_access");
+        exit;
+    }
+    $id = $_POST['id'] ?? null;
+    if ($id === null) {
+        if (isset($_SESSION['role']) && $_SESSION['role'] === 'admin') {
+            header("Location: ../../views/admin/dashboard.php?error=empty_course_id");
+        } else {
+            header("Location: ../../views/instructor/dashboard.php?error=empty_course_id");
+        }
+        exit;
+    }
+    if ($_SESSION['role'] === 'instructor') {
+        $course = getCourseById($id);
+        if (!$course || $course['instructor_id'] != $_SESSION['user_id']) {
+            header("Location: ../../views/instructor/dashboard.php?error=unauthorized_access");
+            exit;
+        }
+    }
+    $result = deleteCourse($id);
+    if ($result) {
+        if (isset($_SESSION['role']) && $_SESSION['role'] === 'admin') {
+            header("Location: ../../views/admin/dashboard.php?success=course_deleted");
+        } else {
+            header("Location: ../../views/instructor/dashboard.php?success=course_deleted");
+        }
+        exit;
+    } else {
+        if (isset($_SESSION['role']) && $_SESSION['role'] === 'admin') {
+            header("Location: ../../views/admin/dashboard.php?error=course_delete_failed");
+        } else {
+            header("Location: ../../views/instructor/dashboard.php?error=course_delete_failed");
+        }
+        exit;
+    }
+} else {
+    if (isset($_SESSION['role']) && $_SESSION['role'] === 'admin') {
+        header("Location: ../../views/admin/dashboard.php?error=invalid_request");
+    } else {
+        header("Location: ../../views/instructor/dashboard.php?error=invalid_request");
+    }
+    exit;
+}
+?>
